@@ -35,3 +35,4 @@ obj/
 bin/
 *.cbp
 *.layout
+*/cmake-build-debug/
