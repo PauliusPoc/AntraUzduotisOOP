@@ -24,30 +24,40 @@ int main() {
 
     cout << "Ivesk studento varda ir pavarde: ";
     string varpav{};
-    cin >> varpav;
+    getline(cin, varpav);
 
+    c1:
     cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
     int choice{}, metod{};
     cin >> choice;
+    if (choice < 1 && choice > 2){
+        cout << "Toks pasirinkimas negalimas." << endl;
+        goto c1;
+    }
+    c2:
     cout << "Pasirinkite funkcija. 1 - skaiciuk pagal vidurki, 2 - skaiciuk pagal mediana: ";
     cin >> metod;
+    if (metod < 1 && metod > 2){
+        cout << "Toks pasirinkimas negalimas." << endl;
+        goto c2;
+    }
 
     int egzam{};
-    vector<int> pazymiai{};
+    vector<int> nDarbas{};
 
-    if (choice == 1) Auto(egzam,pazymiai);
-    else ByHand(egzam,pazymiai);
+    if (choice == 1) Auto(egzam,nDarbas);
+    else ByHand(egzam,nDarbas);
 
-    double galut{};
-    if (metod == 1) galut =  PagalVidurki(egzam,pazymiai);
-    else galut = PagalMediana(egzam,pazymiai);
+    double galBalas{};
+    if (metod == 1) galBalas =  PagalVidurki(egzam,nDarbas);
+    else galBalas = PagalMediana(egzam,nDarbas);
 
 
     cout << endl << endl << endl << varpav << endl << "Pazymiai: " << endl;
-    for(auto paz : pazymiai){
+    for(auto paz : nDarbas){
         cout << paz << endl;
     }
-    cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galut << endl;
+    cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas << endl;
 
     return 0;
 }
@@ -76,7 +86,7 @@ void ByHand(int &egzam, vector<int> &pazymiai) {
 
     int  pazym = 0;
     do{
-        cout << "Ivesk pazymi arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
         cin >> pazym;
         if(pazym) pazymiai.push_back(pazym);
     }while (pazym);
