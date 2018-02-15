@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
-#include <random>
+#include <chrono>
 
 using std::cout;
 using std::endl;
@@ -68,14 +68,32 @@ void Auto(int &egzam, vector<int> &pazym) {
     int kiekis{};
     cin >> kiekis;
 
-    random_device rd;
-    mt19937 mt(rd() * time(0) + rd());
+
+
+    mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     uniform_int_distribution<int> dist(1,10);
 
     egzam = dist(mt);
     for (int i = 0; i < kiekis; i++){
 
         pazym.push_back(dist(mt));
+    }
+}
+
+void Auto(int &egzam, int* pazym){
+    cout << "Kiek pazymiu generuoti? ";
+    int kiekis{};
+    cin >> kiekis;
+
+    pazym = new int[kiekis];
+
+    mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
+    uniform_int_distribution<int> dist(1,10);
+
+    egzam = dist(mt);
+    for (int i = 0; i < kiekis; i++){
+
+        pazym[i] = dist(mt);
     }
 }
 
