@@ -15,15 +15,50 @@
 
 ## Versijų istorija (changelog)
 
+### Changelog v0.1.2 (2018-02-17)
+#### Pridėta
+- Leidžiama vietoje vektorių naudoti masyvus.
+- Pridėtos funkcijos, skirtos dirbti su masyvais:
+  ```c++
+  void Auto(int &egzam, int* &pazym, int &size);
+  void ByHand(int &egzam, int* &pazym, int &size);
+  double PagalVidurki(int &egzam, int* &pazym, int size);
+  double PagalMediana(int &egzam, int* &pazym, int size);
+  ```
+- Pridėti teisingos įvesties patikrinimai.
+#### Pakeista
+- Atnaujintas readme
+- Pakeistas *mt19937* generatoriaus seed generavimas atsitiktinai į laiką nuo epochos pradžios.
+#### Pašalinta
+- Nebenaudojamas random_device.
+
+### Changelog v0.1.1 (2018-02-13)
+#### Pridėta
+- Įkelta programos išvesties nuotrauka
+#### Pakeista
+- Kintamųjų vardai pakeisti į vardus nurodytus reikalavimuose
+- Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
+- Atnaujintas README.md
+
+### Changelog v0.1.1 (2018-02-13)
+#### Pridėta
+- Įkelta programos išvesties nuotrauka
+#### Pakeista
+- Kintamųjų vardai pakeisti į vardus nurodytus reikalavimuose
+- Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
+- Atnaujintas README.md
+
 ### Changelog v0.1 (2018-02-13)
 #### Pridėta
 - Programoje leidžiama pasirinkti atsitiktinių pažymių generavimą naudojant **mt19937** generatorių.
 - Programoje leidžiama pasirnkti, jog vietoje vidurkio, galutinį balą skaičiuotų pagal pažymių medianą.
 - Sukurtos funkcijos:
-  - ```void ByHand ```
-  - ```void Auto```
-  - ```double PagalMediana```
-  - ```double PagalVidurki```
+  ```c++
+  void Auto(int &egzam, vector<int> &pazym);
+  void ByHand(int &egzam, vector<int> &pazymiai);
+  double PagalVidurki(int egzam, vector<int> &pazymiai);
+  double PagalMediana(int egzam, vector<int> &pazymiai);
+  ```
 #### Pakeista
 - Pažymių įrašymo ranka kodas perkeltas į funkciją ```ByHand```.
 - Galutinio balo skaičiavimo pagal vidurkį kodas perkeltas į funkciją ```PagalVidurki```
