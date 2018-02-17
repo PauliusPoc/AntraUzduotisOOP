@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <chrono>
@@ -14,86 +15,135 @@ using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
 using std::sort;
+using std::ifstream;
+using std::ofstream;
 
 void Auto(int &egzam, vector<int> &pazym);
 void ByHand(int &egzam, vector<int> &pazymiai);
 double PagalVidurki(int egzam, vector<int> &pazymiai);
 double PagalMediana(int egzam, vector<int> &pazymiai);
+void Auto(int &egzam, int *&pazym, int &size);
+void ByHand(int &egzam, int *&pazym, int &size);
+double PagalVidurki(int &egzam, int *&pazym, int size);
+double PagalMediana(int &egzam, int *&pazym, int size);
 
-void Auto(int &egzam, int* &pazym, int &size);
-void ByHand(int &egzam, int* &pazym, int &size);
-double PagalVidurki(int &egzam, int* &pazym, int size);
-double PagalMediana(int &egzam, int* &pazym, int size);
+struct KolegaM{
+    string vardas{};
+    string pavard{};
+    double* nDarbai = new double[5];
+    double  galBalasV{};
+    double  galBalasM{};
+    double egzam{};
+};
+struct KolegaV{
+    string vardas{};
+    string pavard{};
+    vector<double> nDarbai{};
+    double  galBalasV{};
+    double  galBalasM{};
+    double egzam{};
+};
+
 
 
 int main() {
 
-
-    cout << "Ivesk studento varda ir pavarde: ";
-    string varpav{};
-    getline(cin, varpav);
-
-    int choice{}, metod{}, masOrVector{};
-    c1:
-    cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
-    cin >> choice;
-    if (choice < 1 || choice > 2){
+    int fileOrNot{};
+    f1:
+    cout << "Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles: ";
+    cin >> fileOrNot;
+    if (fileOrNot < 1 || fileOrNot > 2) {
         cout << "Toks pasirinkimas negalimas." << endl;
-        goto c1;
-    }
-    c2:
-    cout << "Pasirinkite funkcija. 1 - skaiciuk pagal vidurki, 2 - skaiciuk pagal mediana: ";
-    cin >> metod;
-    if (metod < 1 || metod > 2){
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto c2;
-    }
-    c3:
-    cout << "Pasirinkite funkcija. 1 - naudok masyvys, 2 - naudok vectors: ";
-    cin >> masOrVector;
-    if (masOrVector < 1 || masOrVector > 2){
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto c3;
+        goto f1;
     }
 
-
-    int egzam{};
-
-    if (masOrVector == 1){
-
-        int* nDarbas = new int[1];
-        int size = 0;
-
-        if (choice == 1) Auto(egzam,nDarbas, size);
-        else ByHand(egzam,nDarbas,size);
-
-        double galBalas{};
-        if (metod == 1) galBalas =  PagalVidurki(egzam,nDarbas, size);
-        else galBalas = PagalMediana(egzam,nDarbas, size);
-
-
-        cout << endl << varpav << endl << "Pazymiai: " << endl;
-        for(int i = 0; i < size; i++){
-            cout << nDarbas[i] << endl;
+    if (fileOrNot == 1) {
+        int masOrVector{};
+        c3:
+        cout << "Pasirinkite funkcija. 1 - naudok masyvys, 2 - naudok vectors: ";
+        cin >> masOrVector;
+        if (masOrVector < 1 || masOrVector > 2) {
+            cout << "Toks pasirinkimas negalimas." << endl;
+            goto c3;
         }
-        cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas << endl;
+
+        if (masOrVector == 1){
+            KolegaM* kolegos = new KolegaM[1];
+            int koleSize = 0;
+        } else{
+            vector<KolegaV> kolegos{};
+        }
+
+
     }
     else {
-        vector<int> nDarbas{};
+        cout << "Ivesk studento varda ir pavarde: ";
+        string varpav{};
+        getline(cin, varpav);
 
-        if (choice == 1) Auto(egzam,nDarbas);
-        else ByHand(egzam,nDarbas);
-
-        double galBalas{};
-        if (metod == 1) galBalas =  PagalVidurki(egzam,nDarbas);
-        else galBalas = PagalMediana(egzam,nDarbas);
-
-
-        cout << endl << endl << endl << varpav << endl << "Pazymiai: " << endl;
-        for(auto paz : nDarbas){
-            cout << paz << endl;
+        int choice{}, metod{}, masOrVector{};
+        c1:
+        cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
+        cin >> choice;
+        if (choice < 1 || choice > 2) {
+            cout << "Toks pasirinkimas negalimas." << endl;
+            goto c1;
         }
-        cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas << endl;
+        c2:
+        cout << "Pasirinkite funkcija. 1 - skaiciuk pagal vidurki, 2 - skaiciuk pagal mediana: ";
+        cin >> metod;
+        if (metod < 1 || metod > 2) {
+            cout << "Toks pasirinkimas negalimas." << endl;
+            goto c2;
+        }
+        c3:
+        cout << "Pasirinkite funkcija. 1 - naudok masyvys, 2 - naudok vectors: ";
+        cin >> masOrVector;
+        if (masOrVector < 1 || masOrVector > 2) {
+            cout << "Toks pasirinkimas negalimas." << endl;
+            goto c3;
+        }
+
+
+        int egzam{};
+
+        if (masOrVector == 1) {
+
+            int *nDarbas = new int[1];
+            int size = 0;
+
+            if (choice == 1) Auto(egzam, nDarbas, size);
+            else ByHand(egzam, nDarbas, size);
+
+            double galBalas{};
+            if (metod == 1) galBalas = PagalVidurki(egzam, nDarbas, size);
+            else galBalas = PagalMediana(egzam, nDarbas, size);
+
+
+            cout << endl << varpav << endl << "Pazymiai: " << endl;
+            for (int i = 0; i < size; i++) {
+                cout << nDarbas[i] << endl;
+            }
+            cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas
+                 << endl;
+        } else {
+            vector<int> nDarbas{};
+
+            if (choice == 1) Auto(egzam, nDarbas);
+            else ByHand(egzam, nDarbas);
+
+            double galBalas{};
+            if (metod == 1) galBalas = PagalVidurki(egzam, nDarbas);
+            else galBalas = PagalMediana(egzam, nDarbas);
+
+
+            cout << endl << endl << endl << varpav << endl << "Pazymiai: " << endl;
+            for (auto paz : nDarbas) {
+                cout << paz << endl;
+            }
+            cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas
+                 << endl;
+        }
     }
 }
 
@@ -104,15 +154,14 @@ void Auto(int &egzam, vector<int> &pazym) {
     cin >> kiekis;
 
     mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
-    uniform_int_distribution<int> dist(1,10);
+    uniform_int_distribution<int> dist(1, 10);
 
     egzam = dist(mt);
-    for (int i = 0; i < kiekis; i++){
+    for (int i = 0; i < kiekis; i++) {
         pazym.push_back(dist(mt));
     }
 }
-
-void Auto(int &egzam, int* &pazym, int &size) {
+void Auto(int &egzam, int *&pazym, int &size) {
     cout << "Kiek pazymiu generuoti? ";
     int kiekis{};
     cin >> kiekis;
@@ -121,35 +170,33 @@ void Auto(int &egzam, int* &pazym, int &size) {
     pazym = new int[kiekis];
 
     mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
-    uniform_int_distribution<int> dist(1,10);
+    uniform_int_distribution<int> dist(1, 10);
 
     egzam = dist(mt);
-    for (int i = 0; i < kiekis; i++){
+    for (int i = 0; i < kiekis; i++) {
         *(pazym + i) = dist(mt);
     }
 }
-
 void ByHand(int &egzam, vector<int> &pazymiai) {
 
     e1:
     cout << "Ivesk egzamino rezultata: ";
     cin >> egzam;
-    if (!(egzam >= 1 && egzam <= 10)){
+    if (!(egzam >= 1 && egzam <= 10)) {
         cout << "Toks skaičius negalimas." << endl;
         goto e1;
     }
 
-    int  pazym = 0;
-    do{
+    int pazym = 0;
+    do {
 
         cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
         cin >> pazym;
-        if(pazym >= 1 && pazym <= 10) pazymiai.push_back(pazym);
+        if (pazym >= 1 && pazym <= 10) pazymiai.push_back(pazym);
         else if (pazym) cout << "Toks skaičius negalimas." << endl;
-    }while (pazym);
+    } while (pazym);
 }
-
-void ByHand(int &egzam, int* &pazymiai, int &size) {
+void ByHand(int &egzam, int *&pazymiai, int &size) {
 
     e1:
     cout << "Ivesk egzamino rezultata: ";
@@ -182,44 +229,57 @@ void ByHand(int &egzam, int* &pazymiai, int &size) {
         } else if (pazym) cout << "Toks skaičius negalimas." << endl;
     } while (pazym);
 }
-
 double PagalVidurki(int egzam, vector<int> &pazymiai) {
 
-    double  suma{};
+    double suma{};
     sort(pazymiai.begin(), pazymiai.end());
-    for(auto paz : pazymiai){
+    for (auto paz : pazymiai) {
         suma += paz;
     }
 
-    return 0.4 * suma/pazymiai.size() +  0.6 * egzam;
+    return 0.4 * suma / pazymiai.size() + 0.6 * egzam;
 
 }
-
-double PagalVidurki(int &egzam, int* &pazym, int size) {
-    double  suma{};
+double PagalVidurki(int &egzam, int *&pazym, int size) {
+    double suma{};
     sort(pazym, pazym + size);
-    for(int i = 0; i < size; i++){
+    for (int i = 0; i < size; i++) {
         suma += pazym[i];
     }
 
-    return 0.4 * suma/size +  0.6 * egzam;
+    return 0.4 * suma / size + 0.6 * egzam;
 }
-
 double PagalMediana(int egzam, vector<int> &pazymiai) {
     double med{};
     sort(pazymiai.begin(), pazymiai.end());
     med = pazymiai.size() % 2 == 0 ? (pazymiai[pazymiai.size() / 2] + pazymiai[pazymiai.size() / 2 - 1]) / 2
                                    : pazymiai[pazymiai.size() / 2];
-    return 0.4 * med +  0.6 * egzam;
+    return 0.4 * med + 0.6 * egzam;
 }
-
-double PagalMediana(int &egzam, int* &pazym, int size) {
+double PagalMediana(int &egzam, int *&pazym, int size) {
     double med{};
     sort(pazym, pazym + size);
     med = size % 2 == 0 ? (pazym[size / 2] + pazym[size / 2 - 1]) / 2
                         : pazym[size / 2];
-    return 0.4 * med +  0.6 * egzam;
+    return 0.4 * med + 0.6 * egzam;
 }
+
+void Nuskaitymas(KolegaM* &kolegos, int &size){
+
+    double* p = new double[5], egzam;
+    string v, pa;
+
+    ifstream fd("kursiokai.txt");
+
+    while (fd >> v >> pa >> p[0] >> p[1] >> p[0] >> p[1] >> p[0] >> egzam){
+
+    }
+
+}
+
+
+
+
 
 
 
