@@ -15,7 +15,7 @@
 
 ## Versijų istorija (changelog)
 
-### Changelog v0.2 (2018-02-19)
+### [Changelog v0.2 (2018-02-19)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.2)
 #### Pridėta
 - [Leidžiama duomenis skaityti iš failų.](https://github.com/AugustinasMKVU/OOP-Task-2/blob/master/uzd2/kursiokai.txt)
 - Duomenų iš failų saugojimui sukurtos struktūros:
@@ -45,7 +45,7 @@
 - Atnaujintas readme (pridėtas v0.2 changelog'as)
 - Pažymių tipas pakeistas iš int į double
 
-### Changelog v0.1.2 (2018-02-17)
+### [Changelog v0.1.2 (2018-02-17)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1.2)
 #### Pridėta
 - Leidžiama vietoje vektorių naudoti masyvus.
 - Pridėtos funkcijos, skirtos dirbti su masyvais:
@@ -70,7 +70,7 @@
 - Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
 - Atnaujintas README.md
 
-### Changelog v0.1.1 (2018-02-13)
+### [Changelog v0.1.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1.1)
 #### Pridėta
 - Įkelta programos išvesties nuotrauka
 #### Pakeista
@@ -78,7 +78,7 @@
 - Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
 - Atnaujintas README.md
 
-### Changelog v0.1 (2018-02-13)
+### [Changelog v0.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1)
 #### Pridėta
 - Programoje leidžiama pasirinkti atsitiktinių pažymių generavimą naudojant **mt19937** generatorių.
 - Programoje leidžiama pasirnkti, jog vietoje vidurkio, galutinį balą skaičiuotų pagal pažymių medianą.
