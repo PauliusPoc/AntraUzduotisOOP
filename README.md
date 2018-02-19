@@ -18,8 +18,8 @@
 
 - `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
 - `cd uzd2`
-- `g++ -std=c++11 pasisveikinimas.cpp -o pasisveikinimas`
-- `./pasisveikinimas`
+- `g++ -std=c++11 main.cpp -o main`
+- `./main`
 
 
 ## Versijų istorija (changelog)
