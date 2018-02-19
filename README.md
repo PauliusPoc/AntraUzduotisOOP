@@ -17,7 +17,7 @@
 
 ### Changelog v0.2 (2018-02-19)
 #### Pridėta
-- Leidžiama duomenis skaityti iš failų.
+- [Leidžiama duomenis skaityti iš failų.](https://github.com/AugustinasMKVU/OOP-Task-2/blob/master/uzd2/kursiokai.txt)
 - Duomenų iš failų saugojimui sukurtos struktūros:
   ```c++
   void Auto(int &egzam, int* &pazym, int &size);
@@ -40,7 +40,7 @@
     double egzam{};
   };
   ```
-- Duomenų išrašymas į rezultatų failą. Duomenys surikiuoti.
+- [Duomenų išrašymas į rezultatų failą. Duomenys surikiuoti.](https://github.com/AugustinasMKVU/OOP-Task-2/blob/master/uzd2/output.txt)
 #### Pakeista
 - Atnaujintas readme (pridėtas v0.2 changelog'as)
 - Pažymių tipas pakeistas iš int į double
