@@ -1,6 +1,7 @@
-# Augustino Makevičiaus objektinio programavimo 2 užduotis. (VU ISI 1 kursas)
-## Programos tikslas
 
+# Augustino Makevičiaus objektinio programavimo 2 užduotis. (VU ISI 1 kursas)
+# ![Žemėlapis](OOP-Task-2/WordItOut-word-cloud-2806600.png)
+## Programos tikslas
 - Programoje nuskaitomi tokie duomenys:
   - Studento vardas, pavardė
   - Studento n atliktų darbų įverčiai dešimtbalėje sistemoje
