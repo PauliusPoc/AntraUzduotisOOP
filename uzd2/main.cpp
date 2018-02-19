@@ -44,6 +44,8 @@ struct KolegaV{
     double egzam{};
 };
 
+void Nuskaitymas(KolegaM* &kolegos, int &size);
+void Nuskaitymas(vector<KolegaV> kolegos);
 
 
 int main() {
@@ -70,8 +72,22 @@ int main() {
         if (masOrVector == 1){
             KolegaM* kolegos = new KolegaM[1];
             int koleSize = 0;
+            Nuskaitymas(kolegos,koleSize);
+            ofstream fr("rezai.txt");
+            for (int i = 0; i < koleSize; i++){
+                kolegos[i].galBalasV = PagalVidurki(kolegos[i].egzam, kolegos[i].nDarbai, 5);
+                kolegos[i].galBalasM = PagalMediana(kolegos[i].egzam, kolegos[i].nDarbai, 5);
+                fr << kolegos[i].vardas + "\t" + kolegos[i].pavard + "\t" << kolegos[i].galBalasV << "\t" << kolegos[i].galBalasM << endl;
+            }
         } else{
             vector<KolegaV> kolegos{};
+            Nuskaitymas(kolegos);
+            ofstream fr("rezai.txt");
+            for (auto k : kolegos){
+                k.galBalasM = PagalMediana(k.egzam, k.nDarbai);
+                k.galBalasV = PagalVidurki(k.egzam, k.nDarbai);
+                fr << k.vardas + "\t" + k.pavard + "\t" << k.galBalasV << "\t" << k.galBalasM << endl;
+            }
         }
 
 
@@ -268,13 +284,46 @@ void Nuskaitymas(KolegaM* &kolegos, int &size){
 
     double* p = new double[5], egzam;
     string v, pa;
-
+    int cap = 1;
+    KolegaM k{};
     ifstream fd("kursiokai.txt");
 
-    while (fd >> v >> pa >> p[0] >> p[1] >> p[0] >> p[1] >> p[0] >> egzam){
-
+    while (fd >> v >> pa >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam){
+        k.vardas = v;
+        k.pavard = pa;
+        k.nDarbai = p;
+        k.egzam = egzam;
+        if (size < cap){
+            kolegos[size] = k;
+            size++;
+        } else {
+            cap *= 2;
+            KolegaM* temp = new KolegaM[cap];
+            for (int i = 0; i < size; i++){
+                temp[i] = kolegos[i];
+            }
+            kolegos = temp;
+            kolegos[size] = k;
+            size++;
+        }
     }
+}
+void Nuskaitymas(vector<KolegaV> kolegos){
+    double* p = new double[5], egzam;
+    vector<double> darbai{};
+    string v, pa;
+    KolegaV k{};
+    ifstream fd("kursiokai.txt");
 
+    while (fd >> v >> pa >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam){
+        k.vardas = v;
+        k.pavard = pa;
+        for (int i = 0; i < 5; i++) darbai.push_back(p[i]);
+        k.nDarbai = darbai;
+        darbai.clear();
+        k.egzam = egzam;
+        kolegos.push_back(k);
+    }
 }
 
 
