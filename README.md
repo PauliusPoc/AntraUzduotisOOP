@@ -13,6 +13,14 @@
 ## Programos išvedimas 
 ## ![Programos išvedimas](uzd2/Išvedimas.png)
 
+## Įdiegimas naudojant `GCC`kompiliatorių 
+
+- `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
+- `cd uzd2`
+- `g++ -std=c++11 pasisveikinimas.cpp -o pasisveikinimas`
+- `./pasisveikinimas`
+
+
 ## Versijų istorija (changelog)
 
 ### [Changelog v0.2 (2018-02-19)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.2)
