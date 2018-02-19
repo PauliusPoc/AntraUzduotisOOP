@@ -15,6 +15,36 @@
 
 ## Versijų istorija (changelog)
 
+### Changelog v0.2 (2018-02-19)
+#### Pridėta
+- Leidžiama duomenis skaityti iš failų.
+- Duomenų iš failų saugojimui sukurtos struktūros:
+  ```c++
+  void Auto(int &egzam, int* &pazym, int &size);
+  void ByHand(int &egzam, int* &pazym, int &size);
+  double PagalVidurki(int &egzam, int* &pazym, int size);
+  double PagalMediana(int &egzam, int* &pazym, int size);struct KolegaM {
+    string vardas{};
+    string pavard{};
+    double nDarbai[5];
+    double galBalasV{};
+    double galBalasM{};
+    double egzam{};
+  };
+  struct KolegaV {
+    string vardas{};
+    string pavard{};
+    vector<double> nDarbai{};
+    double galBalasV{};
+    double galBalasM{};
+    double egzam{};
+  };
+  ```
+- Duomenų išrašymas į rezultatų failą. Duomenys surikiuoti.
+#### Pakeista
+- Atnaujintas readme (pridėtas v0.2 changelog'as)
+- Pažymių tipas pakeistas iš int į double
+
 ### Changelog v0.1.2 (2018-02-17)
 #### Pridėta
 - Leidžiama vietoje vektorių naudoti masyvus.
