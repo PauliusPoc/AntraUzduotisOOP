@@ -34,15 +34,7 @@ double PagalVidurki(double &egzam, double pazym[], int size);
 
 double PagalMediana(double &egzam, double pazym[], int size);
 
-struct KolegaM {
-    string vardas{};
-    string pavard{};
-    double nDarbai[5];
-    double galBalasV{};
-    double galBalasM{};
-    double egzam{};
-};
-struct KolegaV {
+struct Kolega {
     string vardas{};
     string pavard{};
     vector<double> nDarbai{};
@@ -51,14 +43,13 @@ struct KolegaV {
     double egzam{};
 };
 
-void Nuskaitymas(KolegaM *&kolegos, int &size);
+void Nuskaitymas(vector<Kolega> &kolegos);
+bool KolegosCompareV(Kolega lhs, Kolega rhs);
 
-void Nuskaitymas(vector<KolegaV> &kolegos);
 
-bool KolegosCompareM(KolegaM lhs, KolegaM rhs);
+void Konsole();
 
-bool KolegosCompareV(KolegaV lhs, KolegaV rhs);
-
+void DarbasSuFailais();
 
 int main() {
 
@@ -71,88 +62,68 @@ int main() {
         goto f1;
     }
 
-    if (fileOrNot == 1) {
-        int masOrVector{};
-        f3:
-        cout << "Pasirinkite funkcija. 1 - naudok masyvus, 2 - naudok vektorius: ";
-        cin >> masOrVector;
-        if (masOrVector < 1 || masOrVector > 2) {
-            cout << "Toks pasirinkimas negalimas." << endl;
-            goto f3;
-        }
+    if (fileOrNot == 1) DarbasSuFailais();
+    else Konsole();
+}
 
-        if (masOrVector == 1) {
-            KolegaM *kolegos = new KolegaM[1];
-            int koleSize = 0;
-            Nuskaitymas(kolegos, koleSize);
-            sort(kolegos, kolegos + koleSize, KolegosCompareM);
-            int dv = 6, dp = 7;
-            for (int i = 0; i < koleSize; i++) {
+void DarbasSuFailais() {
+    vector<Kolega> kolegos{};
+    Nuskaitymas(kolegos);
+    sort(kolegos.begin(), kolegos.end(), KolegosCompareV);
+
+    auto dv = dv = kolegos[0].vardas.length(), dp
+    kolegos[0].pavard.length();
+    for (int i = 0; i < kolegos.size(); i++) {
                 if (kolegos[i].vardas.length() > dv) dv = kolegos[i].vardas.length();
                 if (kolegos[i].pavard.length() > dp) dp = kolegos[i].pavard.length();
             }
-            ofstream fr("output.txt");
-            fr << std::left << std::setw(dp + 5) << "Pavardė" << std::setw(dv + 4) << "Vardas"
-               << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
-            for (int i = 0; i < koleSize; i++) {
-                kolegos[i].galBalasV = PagalVidurki(kolegos[i].egzam, kolegos[i].nDarbai, 5);
-                kolegos[i].galBalasM = PagalMediana(kolegos[i].egzam, kolegos[i].nDarbai, 5);
-                fr << std::left << std::setw(dp + 4) << kolegos[i].pavard << std::setw(dv + 4) << kolegos[i].vardas
-                   << std::setprecision(2) << std::fixed << std::setw(18 + 4) << kolegos[i].galBalasV
-                   << std::setw(17 + 4) << kolegos[i].galBalasM << endl;
-            }
-        } else {
-            vector<KolegaV> kolegos{};
-            Nuskaitymas(kolegos);
-            sort(kolegos.begin(), kolegos.end(), KolegosCompareV);
-            int dv = 6, dp = 7;
-            for (int i = 0; i < kolegos.size(); i++) {
-                if (kolegos[i].vardas.length() > dv) dv = kolegos[i].vardas.length();
-                if (kolegos[i].pavard.length() > dp) dp = kolegos[i].pavard.length();
-            }
-            ofstream fr("output.txt");
-            fr << std::left << std::setw(dp + 5) << "Pavardė" << std::setw(dv + 4) << "Vardas"
-               << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
-            for (auto k : kolegos) {
+    if (dv < 6) dv = 6;
+    if (dp < 7) dp = 7;
+
+    ofstream fr("output.txt");
+    fr << std::left << std::setw(dp + 5) << "Pavardė" << std::setw(dv + 4) << "Vardas"
+       << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
+    for (auto k : kolegos) {
                 k.galBalasM = PagalMediana(k.egzam, k.nDarbai);
                 k.galBalasV = PagalVidurki(k.egzam, k.nDarbai);
                 fr << std::left << std::setw(dp + 4) << k.pavard << std::setw(dv + 4) << k.vardas
                    << std::setprecision(2) << std::fixed << std::setw(18 + 4)
                    << k.galBalasV << std::setw(17 + 3) << k.galBalasM << endl;
             }
-        }
-    } else {
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout << "Ivesk studento varda ir pavarde: ";
-        string varpav{};
-        getline(cin, varpav);
+}
 
-        double choice{}, metod{}, masOrVector{};
-        c1:
+void Konsole() {
+    cin.ignore(::std::numeric_limits<long long int>::max(), '\n');
+    cout << "Ivesk studento varda ir pavarde: ";
+    string varpav{};
+    getline(cin, varpav);
+
+    double choice{}, metod{}, masOrVector{};
+    c1:
         cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
-        cin >> choice;
-        if (choice < 1 || choice > 2) {
+    cin >> choice;
+    if (choice < 1 || choice > 2) {
             cout << "Toks pasirinkimas negalimas." << endl;
             goto c1;
         }
-        c2:
+    c2:
         cout << "Pasirinkite funkcija. 1 - skaiciuok pagal vidurki, 2 - skaiciuok pagal mediana: ";
-        cin >> metod;
-        if (metod < 1 || metod > 2) {
+    cin >> metod;
+    if (metod < 1 || metod > 2) {
             cout << "Toks pasirinkimas negalimas." << endl;
             goto c2;
         }
-        c3:
+    c3:
         cout << "Pasirinkite funkcija. 1 - naudok masyvus, 2 - naudok vektorius: ";
-        cin >> masOrVector;
-        if (masOrVector < 1 || masOrVector > 2) {
+    cin >> masOrVector;
+    if (masOrVector < 1 || masOrVector > 2) {
             cout << "Toks pasirinkimas negalimas." << endl;
             goto c3;
         }
 
-        double egzam{};
+    double egzam{};
 
-        if (masOrVector == 1) {
+    if (masOrVector == 1) {
             double *nDarbas = new double[1];
             int size = 0;
             if (choice == 1) Auto(egzam, nDarbas, size);
@@ -185,7 +156,6 @@ int main() {
             cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas
                  << endl;
         }
-    }
 }
 
 void Auto(double &egzam, vector<double> &pazym) {

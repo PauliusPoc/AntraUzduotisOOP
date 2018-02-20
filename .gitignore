@@ -36,3 +36,4 @@ bin/
 *.cbp
 *.layout
 */cmake-build-debug/
+.idea/

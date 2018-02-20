@@ -1,6 +1,6 @@
 
 # Augustino Makevičiaus objektinio programavimo 2 užduotis. (VU ISI 1 kursas)
-# ![Žemėlapis](WordItOut-word-cloud-2806600.png)
+# ![Žemėlapis](WordItOut.png)
 ## Programos tikslas
 - Programoje nuskaitomi tokie duomenys:
   - Studento vardas, pavardė
