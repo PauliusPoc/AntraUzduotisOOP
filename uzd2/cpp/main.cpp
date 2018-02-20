@@ -2,9 +2,9 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <chrono>
-#include <random>
-#include <vector>
+
+#include "../headers/KolegosFaile.h"
+#include "../headers/Skaiciavimai.h"
 
 using std::cout;
 using std::endl;
@@ -22,34 +22,15 @@ void Auto(double &egzam, vector<double> &pazym);
 
 void ByHand(double &egzam, vector<double> &pazymiai);
 
-double PagalVidurki(double egzam, vector<double> &pazymiai);
-
-double PagalMediana(double egzam, vector<double> &pazymiai);
-
 void Auto(double &egzam, double *&pazym, int &size);
 
 void ByHand(double &egzam, double *&pazym, int &size);
 
-double PagalVidurki(double &egzam, double pazym[], int size);
-
-double PagalMediana(double &egzam, double pazym[], int size);
-
-struct Kolega {
-    string vardas{};
-    string pavard{};
-    vector<double> nDarbai{};
-    double galBalasV{};
-    double galBalasM{};
-    double egzam{};
-};
-
-void Nuskaitymas(vector<Kolega> &kolegos);
-bool KolegosCompareV(Kolega lhs, Kolega rhs);
-
 
 void Konsole();
-
 void DarbasSuFailais();
+
+void Rasymas(vector<Kolega> &kolegos);
 
 int main() {
 
@@ -69,9 +50,13 @@ int main() {
 void DarbasSuFailais() {
     vector<Kolega> kolegos{};
     Nuskaitymas(kolegos);
-    sort(kolegos.begin(), kolegos.end(), KolegosCompareV);
+    Rasymas(kolegos);
+}
 
-    auto dv = dv = kolegos[0].vardas.length(), dp
+void Rasymas(vector<Kolega> &kolegos) {
+    sort(kolegos.begin(), kolegos.end(), KolegosCompare);
+
+    auto dv = kolegos[0].vardas.length(), dp = kolegos[0].pavard.length();
     kolegos[0].pavard.length();
     for (int i = 0; i < kolegos.size(); i++) {
                 if (kolegos[i].vardas.length() > dv) dv = kolegos[i].vardas.length();
@@ -242,107 +227,4 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
             }
         } else if (pazym) cout << "Toks skaičius negalimas." << endl;
     } while (pazym);
-}
-
-double PagalVidurki(double egzam, vector<double> &pazymiai) {
-
-    double suma{};
-    sort(pazymiai.begin(), pazymiai.end());
-    for (auto paz : pazymiai) {
-        suma += paz;
-    }
-
-    return 0.4 * suma / pazymiai.size() + 0.6 * egzam;
-
-}
-
-double PagalVidurki(double &egzam, double pazym[], int size) {
-    double suma = 0;
-    sort(pazym, pazym + size);
-    for (int i = 0; i < size; i++) {
-        suma += pazym[i];
-    }
-
-    return 0.4 * suma / size + 0.6 * egzam;
-}
-
-double PagalMediana(double egzam, vector<double> &pazymiai) {
-    double med{};
-    sort(pazymiai.begin(), pazymiai.end());
-    med = pazymiai.size() % 2 == 0 ? (pazymiai[pazymiai.size() / 2] + pazymiai[pazymiai.size() / 2 - 1]) / 2
-                                   : pazymiai[pazymiai.size() / 2];
-    return 0.4 * med + 0.6 * egzam;
-}
-
-double PagalMediana(double &egzam, double pazym[], int size) {
-    double med{};
-    sort(pazym, pazym + size);
-    med = size % 2 == 0 ? (pazym[size / 2] + pazym[size / 2 - 1]) / 2
-                        : pazym[size / 2];
-    return 0.4 * med + 0.6 * egzam;
-}
-
-void Nuskaitymas(KolegaM *&kolegos, int &size) {
-
-    double *p = new double[5], egzam;
-    string v, pa;
-    int cap = 1;
-    KolegaM k{};
-    ifstream fd("kursiokai.txt");
-
-    while (fd >> pa >> v >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam) {
-        k.vardas = v;
-        k.pavard = pa;
-        for (int i = 0; i < 5; i++) { k.nDarbai[i] = p[i]; }
-        k.egzam = egzam;
-        if (size < cap) {
-            kolegos[size] = k;
-            size++;
-        } else {
-            cap *= 2;
-            KolegaM *temp = new KolegaM[cap];
-            for (int i = 0; i < size; i++) {
-                temp[i] = kolegos[i];
-            }
-            kolegos = temp;
-            kolegos[size] = k;
-            size++;
-        }
-    }
-}
-
-void Nuskaitymas(vector<KolegaV> &kolegos) {
-    double *p = new double[5], egzam;
-    vector<double> darbai{};
-    string v, pa;
-    KolegaV k{};
-    ifstream fd("kursiokai.txt");
-
-    while (fd >> pa >> v >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam) {
-        k.vardas = v;
-        k.pavard = pa;
-        for (int i = 0; i < 5; i++) darbai.push_back(p[i]);
-        k.nDarbai = darbai;
-        darbai.clear();
-        k.egzam = egzam;
-        kolegos.push_back(k);
-    }
-}
-
-bool KolegosCompareM(KolegaM lhs, KolegaM rhs) {
-    if (lhs.pavard <= rhs.pavard) {
-        if (lhs.pavard == rhs.pavard) {
-            if (lhs.vardas < rhs.vardas) return true;
-            else return false;
-        } else return true;
-    } else return false;
-}
-
-bool KolegosCompareV(KolegaV lhs, KolegaV rhs) {
-    if (lhs.pavard <= rhs.pavard) {
-        if (lhs.pavard == rhs.pavard) {
-            if (lhs.vardas < rhs.vardas) return true;
-            else return false;
-        } else return true;
-    } else return false;
 }
