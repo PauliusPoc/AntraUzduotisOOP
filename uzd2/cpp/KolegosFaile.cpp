@@ -2,28 +2,7 @@
 // Created by auma4493 on 2018-02-20.
 //
 
-#include <algorithm>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <chrono>
-
-using std::endl;
-using std::string;
-using std::vector;
-using std::mt19937;
-using std::uniform_real_distribution;
-using std::ifstream;
-using std::ofstream;
-
-struct Kolega {
-    string vardas{};
-    string pavard{};
-    vector<double> nDarbai{};
-    double galBalasV{};
-    double galBalasM{};
-    double egzam{};
-};
+#include "../headers/KolegosFaile.h"
 
 void Nuskaitymas(vector<Kolega> &kolegos) {
     double *p = new double[5], egzam;
@@ -50,5 +29,33 @@ bool KolegosCompare(Kolega lhs, Kolega rhs) {
             else return false;
         } else return true;
     } else return false;
+}
+
+void Rasymas(vector<Kolega> &kolegos) {
+    if(kolegos.size() > 0) {
+        sort(kolegos.begin(), kolegos.end(), KolegosCompare);
+        auto dv = kolegos[0].vardas.length(), dp = kolegos[0].pavard.length();
+        for (int i = 0; i < kolegos.size(); i++) {
+            if (kolegos[i].vardas.length() > dv) dv = kolegos[i].vardas.length();
+            if (kolegos[i].pavard.length() > dp) dp = kolegos[i].pavard.length();
+        }
+        if (dv < 6) dv = 6;
+        if (dp < 7) dp = 7;
+
+        ofstream fr("output.txt");
+        fr << std::left << std::setw(dp + 5) << "Pavardė" << std::setw(dv + 4) << "Vardas"
+           << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
+        for (auto k : kolegos) {
+            k.galBalasM = PagalMediana(k.egzam, k.nDarbai);
+            k.galBalasV = PagalVidurki(k.egzam, k.nDarbai);
+            fr << std::left << std::setw(dp + 4) << k.pavard << std::setw(dv + 4) << k.vardas
+               << std::setprecision(2) << std::fixed << std::setw(18 + 4)
+               << k.galBalasV << std::setw(17 + 3) << k.galBalasM << endl;
+        }
+    } else{
+        ofstream fr("output.txt");
+        fr << std::left << std::setw(7 + 5) << "Pavardė" << std::setw(6 + 4) << "Vardas"
+           << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
+    }
 }
 

@@ -6,7 +6,9 @@
 #define UZD2_SKAICIAVIMAI_H
 
 #include <vector>
+#include <algorithm>
 using std::vector;
+using std::sort;
 
 double PagalVidurki(double egzam, vector<double> &pazymiai);
 

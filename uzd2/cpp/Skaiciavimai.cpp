@@ -1,10 +1,8 @@
 //
 // Created by auma4493 on 2018-02-20.
 //
-#include <algorithm>
 
-using std::sort;
-using std::vector;
+#include "../headers/Skaiciavimai.h"
 
 double PagalVidurki(double egzam, vector<double> &pazymiai) {
 
