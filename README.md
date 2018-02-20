@@ -24,7 +24,31 @@
 
 ## Versijų istorija (changelog)
 
-### [Changelog v0.2 (2018-02-19)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.2)
+### [Changelog v0.2.1 (2018-02-20)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.2.1)
+#### Pridėta
+- Pridėtos funkcijos, valdančios programą. Jos gautos refactorinimo metu:
+  ```c++
+  void Konsole();
+  void DarbasSuFailais();
+  ```
+- Pridėtos nuorodos į reikiamus headerius:
+  ```c++
+  #include "../headers/DarbasKonsole.h"
+  #include "../headers/Skaiciavimai.h"
+  ```
+- Sukurtas headers folderis, į kurį įdėjau tris headerius.
+- Sukurtas cpp folderis, į kurį įdėjau tris cpp failus atitinkančius headerius.
+
+#### Pakeista
+- main.cpp perkelta į cpp aplankalą
+- Funkcijos susijusios su darbu su failais, konsole bei skaičiavimais perkeltos į atitinkamus cpp failus. Jų declare'ai perkelti į atitinkamus headerius.
+- Atsižvelgus į dėstytojo pastabas apie std::string::size_type, vietose aprašančiose string ilgius pradėta naudoti auto vietoj int.
+-Pakeistas WordRain nuotraukos pavadinimas.
+
+#### Panakinta
+- Iš main.cpp ištrintos funkcijos, kurias perkėliau.
+
+### [Changelog v0.2 (2018-02-19)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.2)
 #### Pridėta
 - [Leidžiama duomenis skaityti iš failų.](https://github.com/AugustinasMKVU/OOP-Task-2/blob/master/uzd2/kursiokai.txt)
 - Duomenų iš failų saugojimui sukurtos struktūros:
@@ -54,7 +78,7 @@
 - Atnaujintas readme (pridėtas v0.2 changelog'as)
 - Pažymių tipas pakeistas iš int į double
 
-### [Changelog v0.1.2 (2018-02-17)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1.2)
+### [Changelog v0.1.2 (2018-02-17)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.1.2)
 #### Pridėta
 - Leidžiama vietoje vektorių naudoti masyvus.
 - Pridėtos funkcijos, skirtos dirbti su masyvais:
@@ -79,7 +103,7 @@
 - Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
 - Atnaujintas README.md
 
-### [Changelog v0.1.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1.1)
+### [Changelog v0.1.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.1.1)
 #### Pridėta
 - Įkelta programos išvesties nuotrauka
 #### Pakeista
@@ -87,7 +111,7 @@
 - Sutaisytas bug'as, kai vartotojas įveda 2 žodžius (vardą ir pavardę)
 - Atnaujintas README.md
 
-### [Changelog v0.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/releases/tag/v0.1)
+### [Changelog v0.1 (2018-02-13)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.1)
 #### Pridėta
 - Programoje leidžiama pasirinkti atsitiktinių pažymių generavimą naudojant **mt19937** generatorių.
 - Programoje leidžiama pasirnkti, jog vietoje vidurkio, galutinį balą skaičiuotų pagal pažymių medianą.
