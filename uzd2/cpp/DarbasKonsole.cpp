@@ -3,6 +3,7 @@
 //
 
 #include <iomanip>
+#include <cassert>
 #include "../headers/DarbasKonsole.h"
 #include "../headers/Skaiciavimai.h"
 
@@ -75,40 +76,33 @@ void Auto(double &egzam, double *&pazym, int &size) {
 
 void ByHand(double &egzam, vector<double> &pazymiai) {
 
-    e1:
-    cout << "Ivesk egzamino rezultata: ";
+
+    cout << "Ivesk egzamino rezultata desimtbaleje sistemoje: ";
     cin >> egzam;
-    if (!(egzam >= 1 && egzam <= 10)) {
-        cout << "Toks skaičius negalimas." << endl;
-        goto e1;
-    }
+    assert(egzam >= 1.0 && egzam <= 10.0);
 
     double pazym = 0;
-    do {
-
-        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
-        cin >> pazym;
+    cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+    while(cin >> pazym){
+        assert(pazym >= 1.0 && pazym <= 10.0);
         if (pazym >= 1 && pazym <= 10) pazymiai.push_back(pazym);
         else if (pazym) cout << "Toks skaičius negalimas." << endl;
-    } while (pazym);
+        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+    }
 }
 
 void ByHand(double &egzam, double *&pazymiai, int &size) {
 
-    e1:
-    cout << "Ivesk egzamino rezultata: ";
+    cout << "Ivesk egzamino rezultata desimtbaleje sistemoje: ";
     cin >> egzam;
-    if (!(egzam >= 1 && egzam <= 10)) {
-        cout << "Toks skaičius negalimas." << endl;
-        goto e1;
-    }
+    assert(egzam >= 1.0 && egzam <= 10.0);
 
     auto capacity = 1;
 
     double pazym = 0;
-    do {
-        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
-        cin >> pazym;
+    cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+    while(cin >> pazym) {
+        assert(pazym >= 1.0 && pazym <= 10.0);
         if (pazym >= 1 && pazym <= 10) {
             if (size < capacity) {
                 pazymiai[size] = pazym;
@@ -124,29 +118,21 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
                 size++;
             }
         } else if (pazym) cout << "Toks skaičius negalimas." << endl;
-    } while (pazym);
+        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+    }
 }
 
 void Choices(double &choice, double &metod, double &masOrVector) {
-    c1:
+
     cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
     cin >> choice;
-    if (choice < 1 || choice > 2) {
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto c1;
-    }
-    c2:
+    assert(choice == 1 || choice == 2);
+
     cout << "Pasirinkite funkcija. 1 - skaiciuok pagal vidurki, 2 - skaiciuok pagal mediana: ";
     cin >> metod;
-    if (metod < 1 || metod > 2) {
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto c2;
-    }
-    c3:
+    assert(metod == 1 || metod == 2);
+
     cout << "Pasirinkite funkcija. 1 - naudok masyvus, 2 - naudok vektorius: ";
     cin >> masOrVector;
-    if (masOrVector < 1 || masOrVector > 2) {
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto c3;
-    }
+    assert(masOrVector == 1 || masOrVector == 2);
 }

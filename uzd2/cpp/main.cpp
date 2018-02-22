@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <cassert>
 
 #include "../headers/KolegosFaile.h"
 #include "../headers/DarbasKonsole.h"
@@ -17,13 +18,9 @@ void DarbasSuFailais();
 int main() {
 
     int fileOrNot{};
-    f1:
     cout << "Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles: ";
     cin >> fileOrNot;
-    if (fileOrNot < 1 || fileOrNot > 2) {
-        cout << "Toks pasirinkimas negalimas." << endl;
-        goto f1;
-    }
+    assert(fileOrNot == 1 || fileOrNot == 2);
 
     if (fileOrNot == 1) DarbasSuFailais();
     else Konsole();

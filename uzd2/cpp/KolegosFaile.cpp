@@ -3,6 +3,7 @@
 //
 
 #include "../headers/KolegosFaile.h"
+#include "../headers/Skaiciavimai.h"
 
 void Nuskaitymas(vector<Kolega> &kolegos) {
     double *p = new double[5], egzam;
