@@ -24,6 +24,13 @@
 
 ## Versijų istorija (changelog)
 
+### [Changelog v0.3 (2018-02-20)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.3)
+#### Pridėta
+- Sukurti *try-catch* sakiniai ties failų atidarymu, vietos atmintyje išskyrimu (masyvams)
+- Tikliau nurodomi failų tipai(in ar out).
+- Sukurti *labels* neteisingos įvesties valdymui.
+
+
 ### [Changelog v0.2.1 (2018-02-20)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.2.1)
 #### Pridėta
 - Pridėtos funkcijos, valdančios programą. Jos gautos refactorinimo metu:
