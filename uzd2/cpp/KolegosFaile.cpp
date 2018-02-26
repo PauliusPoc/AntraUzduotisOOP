@@ -5,12 +5,27 @@
 #include "../headers/KolegosFaile.h"
 #include "../headers/Skaiciavimai.h"
 
+using std::cout;
+using std::exception;
+
 void Nuskaitymas(vector<Kolega> &kolegos) {
     double *p = new double[5], egzam;
     vector<double> darbai{};
     string v, pa;
     Kolega k{};
-    ifstream fd("kursiokai.txt");
+    ifstream fd;
+
+    try {
+        fd.open("kursiokai.txt", std::ios::in);
+        if (!fd.good()) throw "Error opening file";
+    } catch (string e){
+        cout << e << endl;
+        return;
+    }catch (char const* e){
+        cout << "Duomenu failas neegzistuoja" << endl;
+        return;
+    }
+
 
     while (fd >> pa >> v >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam) {
         k.vardas = v;
@@ -43,7 +58,16 @@ void Rasymas(vector<Kolega> &kolegos) {
         if (dv < 6) dv = 6;
         if (dp < 7) dp = 7;
 
-        ofstream fr("output.txt");
+        ofstream fr;
+
+        try {
+            fr.open("output.txt", std::ios::out);
+            if (!fr.good()) throw "Error opening file";
+        } catch (string e){
+            cout << e << endl;
+            return;
+        }
+
         fr << std::left << std::setw(dp + 5) << "Pavardė" << std::setw(dv + 4) << "Vardas"
            << std::setw(18 + 4) << "Galutinis-vidurkis" << std::setw(17 + 4) << "Galutinis-mediana" << endl;
         for (auto k : kolegos) {

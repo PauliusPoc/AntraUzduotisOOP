@@ -58,12 +58,22 @@ void Auto(double &egzam, vector<double> &pazym) {
 }
 
 void Auto(double &egzam, double *&pazym, int &size) {
+    a1:
     cout << "Kiek pazymiu generuoti? ";
     int kiekis{};
     cin >> kiekis;
 
-    size = kiekis;
-    pazym = new double[kiekis];
+    try{
+        if (kiekis > SIZE_MAX){
+            throw "Size too large.";
+        } else{
+            pazym = new double[kiekis];
+            size = kiekis;
+        }
+    } catch (string ex){
+        cout << ex << endl;
+        goto a1;
+    }
 
     mt19937 mt(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     uniform_real_distribution<> dist(1.0, 10.0);
@@ -76,15 +86,17 @@ void Auto(double &egzam, double *&pazym, int &size) {
 
 void ByHand(double &egzam, vector<double> &pazymiai) {
 
-
+    e1:
     cout << "Ivesk egzamino rezultata desimtbaleje sistemoje: ";
     cin >> egzam;
-    assert(egzam >= 1.0 && egzam <= 10.0);
+    if (egzam < 1 || egzam > 10) {
+        cout << "Toks skaičius negalimas." << endl;
+        goto e1;
+    }
 
     double pazym = 0;
     cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
     while(cin >> pazym){
-        assert(pazym >= 1.0 && pazym <= 10.0);
         if (pazym >= 1 && pazym <= 10) pazymiai.push_back(pazym);
         else if (pazym) cout << "Toks skaičius negalimas." << endl;
         cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
@@ -93,11 +105,16 @@ void ByHand(double &egzam, vector<double> &pazymiai) {
 
 void ByHand(double &egzam, double *&pazymiai, int &size) {
 
+    e1:
     cout << "Ivesk egzamino rezultata desimtbaleje sistemoje: ";
     cin >> egzam;
-    assert(egzam >= 1.0 && egzam <= 10.0);
+    if (egzam < 1 || egzam > 10) {
+        cout << "Toks skaičius negalimas." << endl;
+        goto e1;
+    }
 
     auto capacity = 1;
+    double daug = 1.0;
 
     double pazym = 0;
     cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
@@ -108,8 +125,19 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
                 pazymiai[size] = pazym;
                 size++;
             } else {
-                capacity *= 2;
-                auto *t = new double[capacity];
+                c1:
+                capacity *= 1 + daug;
+                double *t;
+                try{
+                    if (capacity > SIZE_MAX){
+                        throw "Size too big";
+                    }
+                    t = new double[capacity];
+                } catch (string e){
+                    if (e == "Size too big") daug /= 2;
+                    goto c1;
+                }
+
                 for (int i = 0; i < size; i++) {
                     *(t + i) = *(pazymiai + i);
                 }

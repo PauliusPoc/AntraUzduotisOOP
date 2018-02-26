@@ -16,14 +16,19 @@ void Konsole();
 void DarbasSuFailais();
 
 int main() {
-
+    f1:
     int fileOrNot{};
     cout << "Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles: ";
     cin >> fileOrNot;
-    assert(fileOrNot == 1 || fileOrNot == 2);
 
-    if (fileOrNot == 1) DarbasSuFailais();
-    else Konsole();
+    if (fileOrNot >= 1 && fileOrNot <= 2) {
+
+        if (fileOrNot == 1) DarbasSuFailais();
+        else Konsole();
+    } else {
+        cout << "Toks pasirinkimas negalimas" << endl;
+        goto f1;
+    }
 }
 
 void DarbasSuFailais() {
