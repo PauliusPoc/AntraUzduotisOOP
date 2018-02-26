@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cassert>
 
+
 #include "../headers/KolegosFaile.h"
 #include "../headers/DarbasKonsole.h"
 
@@ -33,6 +34,7 @@ int main() {
 
 void DarbasSuFailais() {
     vector<Kolega> kolegos{};
+
     Nuskaitymas(kolegos);
     Rasymas(kolegos);
 }
