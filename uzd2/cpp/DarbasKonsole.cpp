@@ -4,8 +4,10 @@
 
 #include <iomanip>
 #include <cassert>
-#include "../headers/DarbasKonsole.h"
 #include "../headers/Skaiciavimai.h"
+#include "../headers/DarbasKonsole.h"
+
+using std::exception;
 
 void MasyvasRasymas(const string &varpav, double choice,  double metod, double egzam) {
     auto *nDarbas = new double[1];
@@ -18,7 +20,7 @@ void MasyvasRasymas(const string &varpav, double choice,  double metod, double e
     else galBalas = PagalMediana(egzam, nDarbas, size);
 
     cout << endl << varpav << endl << "Pazymiai: " << endl;
-    for (int i = 0; i < size; i++) {
+    for (auto i = 0; i < size; i++) {
         cout << std::setprecision(2) << std::fixed << nDarbas[i] << endl;
     }
     cout << "Egzaminas - " << egzam << endl << std::fixed << std::setprecision(2) << "Galutinis - " << galBalas
@@ -70,7 +72,7 @@ void Auto(double &egzam, double *&pazym, int &size) {
             pazym = new double[kiekis];
             size = kiekis;
         }
-    } catch (string ex){
+    } catch (string &ex){
         cout << ex << endl;
         goto a1;
     }
@@ -80,7 +82,11 @@ void Auto(double &egzam, double *&pazym, int &size) {
 
     egzam = dist(mt);
     for (int i = 0; i < kiekis; i++) {
-        pazym[i] = dist(mt);
+        try {
+            pazym[i] = dist(mt);
+        } catch (exception &exception){
+            cout << exception.what() << endl;
+        }
     }
 }
 
@@ -99,7 +105,7 @@ void ByHand(double &egzam, vector<double> &pazymiai) {
     while(cin >> pazym){
         if (pazym >= 1 && pazym <= 10) pazymiai.push_back(pazym);
         else if (pazym) cout << "Toks skaičius negalimas." << endl;
-        cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
+        if (pazym) cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
     }
 }
 
@@ -122,8 +128,12 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
         assert(pazym >= 1.0 && pazym <= 10.0);
         if (pazym >= 1 && pazym <= 10) {
             if (size < capacity) {
-                pazymiai[size] = pazym;
-                size++;
+                try {
+                    pazymiai[size] = pazym;
+                    size++;
+                } catch (exception &exception){
+                    cout << exception.what() << endl;
+                }
             } else {
                 c1:
                 capacity *= 1 + daug;
@@ -133,7 +143,7 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
                         throw "Size too big";
                     }
                     t = new double[capacity];
-                } catch (string e){
+                } catch (string &e){
                     if (e == "Size too big") daug /= 2;
                     goto c1;
                 }
@@ -142,8 +152,12 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
                     *(t + i) = *(pazymiai + i);
                 }
                 pazymiai = t;
-                pazymiai[size] = pazym;
-                size++;
+                try {
+                    pazymiai[size] = pazym;
+                    size++;
+                } catch (exception &exception){
+                    cout << exception.what() << endl;
+                }
             }
         } else if (pazym) cout << "Toks skaičius negalimas." << endl;
         cout << "Ivesk pazymi nuo 1 iki 10 arba bet koki kita simboli, noredamas uzbaigti ivedima: ";
@@ -152,15 +166,27 @@ void ByHand(double &egzam, double *&pazymiai, int &size) {
 
 void Choices(double &choice, double &metod, double &masOrVector) {
 
+    c1:
     cout << "Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: ";
     cin >> choice;
-    assert(choice == 1 || choice == 2);
+    if (choice != 1 && choice != 2) {
+        cout << "Toks pasirinkimas negalimas" << endl;
+        goto  c1;
+    }
 
+    c2:
     cout << "Pasirinkite funkcija. 1 - skaiciuok pagal vidurki, 2 - skaiciuok pagal mediana: ";
     cin >> metod;
-    assert(metod == 1 || metod == 2);
+    if (metod != 1 && metod != 2) {
+        cout << "Toks pasirinkimas negalimas" << endl;
+        goto  c2;
+    }
 
+    c3:
     cout << "Pasirinkite funkcija. 1 - naudok masyvus, 2 - naudok vektorius: ";
     cin >> masOrVector;
-    assert(masOrVector == 1 || masOrVector == 2);
+    if (masOrVector != 1 && masOrVector != 2){
+        cout << "Toks pasirinkimas negalimas" << endl;
+        goto  c3;
+    }
 }

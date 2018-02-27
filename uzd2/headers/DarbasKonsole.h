@@ -5,7 +5,6 @@
 #ifndef UZD2_DARBASKONSOLE_H
 #define UZD2_DARBASKONSOLE_H
 
-
 #include <algorithm>
 #include <vector>
 #include <random>
@@ -15,6 +14,7 @@
 using std::sort;
 using std::vector;
 using std::mt19937;
+using std::uniform_real_distribution;
 using std::uniform_real_distribution;
 using std::cout;
 using std::cin;

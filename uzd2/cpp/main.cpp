@@ -1,31 +1,22 @@
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <cassert>
-
-
 #include "../headers/KolegosFaile.h"
 #include "../headers/DarbasKonsole.h"
-
-using std::cout;
-using std::endl;
-using std::cin;
-using std::string;
-using std::vector;
+#include "../headers/PerformanceProfiling.h"
 
 void Konsole();
 void DarbasSuFailais();
+void Performance();
 
 int main() {
     f1:
     int fileOrNot{};
-    cout << "Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles: ";
+    cout << "Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles, 3 - performance profiler: ";
     cin >> fileOrNot;
 
-    if (fileOrNot >= 1 && fileOrNot <= 2) {
+    if (fileOrNot >= 1 && fileOrNot <= 3) {
 
         if (fileOrNot == 1) DarbasSuFailais();
-        else Konsole();
+        else if (fileOrNot == 2) Konsole();
+        else Performance();
     } else {
         cout << "Toks pasirinkimas negalimas" << endl;
         goto f1;
@@ -35,7 +26,7 @@ int main() {
 void DarbasSuFailais() {
     vector<Kolega> kolegos{};
 
-    Nuskaitymas(kolegos);
+    Nuskaitymas(kolegos,"kursiokai.txt");
     Rasymas(kolegos);
 }
 
@@ -55,4 +46,10 @@ void Konsole() {
     } else {
         VektoriusRasymas(varpav, choice, metod, egzam);
     }
+}
+
+void Performance(){
+    const unsigned int nTestu = 7; // kiek testų failų generuoti
+    StartTesting(nTestu);
+
 }

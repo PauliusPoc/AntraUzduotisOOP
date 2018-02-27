@@ -28,9 +28,16 @@ struct Kolega {
     double galBalasV{};
     double galBalasM{};
     double egzam{};
+    bool arKietas = true;
+
+    void printKolega(unsigned int dv, unsigned int dp, ofstream &fr) {
+        fr << std::left << std::setw(dp + 4) << pavard << std::setw(dv + 4) << vardas
+           << std::setprecision(2) << std::fixed << std::setw(18 + 4)
+           << galBalasV << std::setw(17 + 3) << galBalasM << endl;
+    }
 };
 
-void Nuskaitymas(vector<Kolega> &kolegos);
+void Nuskaitymas(vector<Kolega> &kolegos, string s = "kursiokai.txt");
 bool KolegosCompare(Kolega lhs, Kolega rhs);
 void Rasymas(vector<Kolega> &kolegos);
 
