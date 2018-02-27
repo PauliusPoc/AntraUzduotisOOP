@@ -33,6 +33,10 @@ void StartTesting(const unsigned int nTestu) {
         cout << "Neteisinga įvestis\n";
         goto c2;
     }
+    if (metod != 1 && metod != 2) {
+        cout << "Toks pasirinkimas negalimas" << endl;
+        goto  c2;
+    }
 
     for (unsigned int i = 1; i <= nTestu; i++)
         StartProfiling(i, pr, static_cast<unsigned int>(metod));

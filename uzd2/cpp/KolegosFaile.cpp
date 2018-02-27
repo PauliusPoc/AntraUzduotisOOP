@@ -4,7 +4,7 @@
 
 #include "../headers/KolegosFaile.h"
 #include "../headers/Skaiciavimai.h"
-#include "../cma"
+
 using std::cout;
 using std::exception;
 
