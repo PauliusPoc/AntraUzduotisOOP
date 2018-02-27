@@ -24,12 +24,28 @@
 
 ## Versijų istorija (changelog)
 
-### [Changelog v0.3 (2018-02-20)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.3)
+### [Changelog v0.4 (2018-02-27)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.4)
+#### Pridėta
+- Sukurtos funkcijos programos spartai testuoti, kurios įdėtą headerį ir source failą
+  ```c++
+  void ArKietas(vector<Kolega> &koleg, bool arVidurkiu);
+  void StartProfiling(unsigned int n, ofstream &pr, unsigned int met);
+  void GeneruokTestui(unsigned int n, ofstream &fk);
+  void IsrasykTesta(const vector<Kolega> &kolegos, const string &fo);
+  void StartTesting(const unsigned int nTestu);
+  ```
+- Įkelti analizės rezultatai
+#### Pakeista
+- Uždėtos naujos apsaugos pasirinkimų cin'am. Nebegalima pramušti su stringais.
+- Vieno kursioko informacijos išrašymas perkeltas į atitinkamą struktųrą.
+#### Pašalinta
+- Atsisakyta *assert*. Jis pakeistais if'ais ir goto funkcijomis.
+
+### [Changelog v0.3 (2018-02-26)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.3)
 #### Pridėta
 - Sukurti *try-catch* sakiniai ties failų atidarymu, vietos atmintyje išskyrimu (masyvams)
 - Tikliau nurodomi failų tipai(in ar out).
 - Sukurti *labels* neteisingos įvesties valdymui.
-
 
 ### [Changelog v0.2.1 (2018-02-20)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.2.1)
 #### Pridėta
