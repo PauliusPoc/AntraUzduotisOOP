@@ -43,7 +43,7 @@ void StartTesting(const unsigned int nTestu) {
 }
 void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
 
-    vector<Kolega> kolegos;
+    vector<Kolega> kolegos, geek, los;
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
     string fi = "perf" + std::__cxx11::to_string(dydis) + "_IN.txt";
@@ -61,10 +61,11 @@ void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
     pr << "------------------------------------------------------------------------------------" << endl;
     pr << "Dirbame su " + std::to_string(dydis) + " įrašų" << endl;
 
-    time_point start = laikas::now();
+    auto start = laikas::now();
     GeneruokTestui(dydis, fk);
-    time_point end = laikas::now();
+    auto end = laikas::now();
     std::chrono::duration<double> diff = end - start;
+    auto grandTotal = diff;
     pr <<"Generavimas užtruko  "<< (diff).count()<<" s."<<endl;
 
     start = laikas::now();
@@ -72,43 +73,22 @@ void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
     end = laikas::now();
     diff = end - start;
     pr <<"Nuskaitymas užtruko  "<< (diff).count()<<" s."<<endl;
+    grandTotal += diff;
 
     start = laikas::now();
-    ArKietas(kolegos, met == 1);
+    ArKietas(kolegos,geek,los, met == 1);
     end = laikas::now();
     diff = end - start;
     pr <<"Rūšiavimas užtruko  "<< (diff).count()<<" s."<<endl;
+    grandTotal += diff;
 
-    start = laikas::now();
-    IsrasykTesta(kolegos, fo);
-    end = laikas::now();
-    diff = end - start;
-    pr <<"Išrašymas užtruko  "<<  (diff).count()<<" s."<<endl;
+    pr <<"Iš viso:  "<< (grandTotal).count()<<" s."<<endl;
+
 
     pr << "------------------------------------------------------------------------------------" << endl;
 
 }
-void IsrasykTesta(const vector<Kolega> &kolegos, const string &fo) {
-    ofstream fr;
 
-    try {
-        fr.open(fo, std::ios_base::out);
-        if (!fr.good()) throw "Error opening file";
-    } catch (string &e){
-        cout << e << endl;
-        return;
-    }
-
-    fr << "Vargšiukai: " << endl;
-    for (auto k : kolegos) {
-        if (!k.arKietas) fr << k.vardas << " " << k.pavard << endl;
-    }
-
-    fr << "Galvočiai: " << endl;
-    for (auto k : kolegos) {
-        if (k.arKietas) fr << k.vardas << " " << k.pavard <<  endl;
-    }
-}
 void GeneruokTestui(unsigned int n, ofstream &fk) {
     mt19937 mt(static_cast<long unsigned int>(std::chrono::_V2::system_clock::now().time_since_epoch().count()));
     uniform_int_distribution<int> dist(1, 10);
@@ -121,21 +101,23 @@ void GeneruokTestui(unsigned int n, ofstream &fk) {
         fk << endl;
     }
 }
-void ArKietas(vector<Kolega> &koleg, bool arVidurkiu) {
+void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, vector<Kolega> &lose, bool arVidurkiu) {
 
     for (auto &k : koleg){
         if (arVidurkiu){
             double suma{};
             for (auto paz : k.nDarbai)
                 suma += paz;
-            k.arKietas = suma / k.nDarbai.size() >= 6.0;
+            if(suma / k.nDarbai.size() >= 6.0) geek.push_back(k);
+            else lose.push_back(k);
         } else{
             double med{};
             sort(k.nDarbai.begin(), k.nDarbai.end());
             med = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
                                             : k.nDarbai[k.nDarbai.size() / 2];
 
-            k.arKietas = med >= 6;
+            if(med >= 6) geek.push_back(k);
+            else lose.push_back(k);
         }
     }
 }

@@ -37,3 +37,5 @@ bin/
 *.layout
 */cmake-build-debug/
 .idea/
+uzd2/Performance Input Failai/perf1000000_IN.txt
+uzd2/Performance Input Failai/perf10000000_IN.txt
