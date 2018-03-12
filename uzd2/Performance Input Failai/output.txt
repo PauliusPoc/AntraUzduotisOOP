@@ -1,3 +1,0 @@
-Pavardė       Vardas        Galutinis-vidurkis    Galutinis-mediana    
-Makevicius    Augustinas    6.32                  6.40                 
-Makevicius    Paulius       8.84                  9.00                 
