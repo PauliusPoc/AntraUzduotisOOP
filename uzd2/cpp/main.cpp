@@ -52,7 +52,7 @@ void Konsole() {
 }
 
 void Performance(){
-    const unsigned int nTestu = 6; // kiek testų failų generuoti
+    const unsigned int nTestu = 6; // kiek testų  atlkti?
     StartTesting(nTestu);
 
 }

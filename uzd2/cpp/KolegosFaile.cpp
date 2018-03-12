@@ -5,6 +5,12 @@
 #include "../headers/KolegosFaile.h"
 #include "../headers/Skaiciavimai.h"
 
+#include <list>
+#include <deque>
+
+using std::list;
+using std::deque;
+
 using std::cout;
 using std::exception;
 
@@ -12,6 +18,64 @@ const int kiekVietos = 18;
 const int vienasTabas = 4;
 
 void Nuskaitymas(vector<Kolega> &kolegos, string s) {
+    double *p = new double[5], egzam;
+    vector<double> darbai{};
+    string v, pa;
+    Kolega k{};
+    ifstream fd;
+
+    try {
+        fd.open( s, std::ios::in);
+        if (!fd.good()) throw "Error opening file";
+    } catch (string &e){
+        cout << e << endl;
+        return;
+    }catch (char const* e){
+        cout << "Duomenu failas neegzistuoja" << endl;
+        return;
+    }
+
+
+    while (fd >> pa >> v >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam) {
+        k.vardas = v;
+        k.pavard = pa;
+        for (int i = 0; i < 5; i++) darbai.push_back(p[i]);
+        k.nDarbai = darbai;
+        darbai.clear();
+        k.egzam = egzam;
+        kolegos.push_back(k);
+    }
+}
+void Nuskaitymas(list<Kolega> &kolegos, string s) {
+    double *p = new double[5], egzam;
+    vector<double> darbai{};
+    string v, pa;
+    Kolega k{};
+    ifstream fd;
+
+    try {
+        fd.open( s, std::ios::in);
+        if (!fd.good()) throw "Error opening file";
+    } catch (string &e){
+        cout << e << endl;
+        return;
+    }catch (char const* e){
+        cout << "Duomenu failas neegzistuoja" << endl;
+        return;
+    }
+
+
+    while (fd >> pa >> v >> p[0] >> p[1] >> p[2] >> p[3] >> p[4] >> egzam) {
+        k.vardas = v;
+        k.pavard = pa;
+        for (int i = 0; i < 5; i++) darbai.push_back(p[i]);
+        k.nDarbai = darbai;
+        darbai.clear();
+        k.egzam = egzam;
+        kolegos.push_back(k);
+    }
+}
+void Nuskaitymas(deque<Kolega> &kolegos, string s) {
     double *p = new double[5], egzam;
     vector<double> darbai{};
     string v, pa;

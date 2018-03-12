@@ -12,7 +12,11 @@
 #include <chrono>
 #include <random>
 #include <vector>
+#include <list>
+#include <deque>
 
+using std::list;
+using std::deque;
 using std::endl;
 using std::string;
 using std::vector;
@@ -40,5 +44,8 @@ struct Kolega {
 void Nuskaitymas(vector<Kolega> &kolegos, string s = "kursiokai.txt");
 bool KolegosCompare(Kolega lhs, Kolega rhs);
 void Rasymas(vector<Kolega> &kolegos);
+
+void Nuskaitymas(list<Kolega> &kolegos, string s);
+void Nuskaitymas(deque<Kolega> &kolegos, string s);
 
 #endif //UZD2_KOLEGOSFAILE_H
