@@ -24,6 +24,24 @@
 
 ## Versijų istorija (changelog)
 
+### [Changelog v0.5 (2018-03-12)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.5)
+#### Pridėta
+- Sukurtos funkcijos, leidžiančios dirbti su ```c++ std::list, std::deque```
+- Įkelti atnaujinti analizės rezultatai: ProfilingResultDeque ir ProfilingResultList
+#### Pakeista
+- Vektorių analizės rezultatai pervadinti į ProfilingResultVector.
+- Atnaujintas ReadMe
+
+### [Changelog v0.4.1 (2018-03-12)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.4.1)
+#### Pridėta
+- Įkelti duomenų failai
+- Įkelti atnaujinti analizės rezultatai
+#### Pakeista
+- Vietoj išrašymo į failą pagal bool reikšmę, studentus deliojame į atitinkamus vektorius.
+- Atnaujintas ReadMe
+#### Pašalinta
+- Panakinta išrašymo funkcija
+
 ### [Changelog v0.4 (2018-02-27)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.4)
 #### Pridėta
 - Sukurtos funkcijos programos spartai testuoti, kurios įdėtą headerį ir source failą
