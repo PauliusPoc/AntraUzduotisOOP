@@ -26,7 +26,11 @@
 
 ### [Changelog v0.5 (2018-03-12)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.5)
 #### Pridėta
-- Sukurtos funkcijos, leidžiančios dirbti su ```c++ std::list, std::deque```
+- Sukurtos funkcijos, leidžiančios dirbti su
+  ```c++ 
+   std::list
+   std::deque
+  ```
 - Įkelti atnaujinti analizės rezultatai: ProfilingResultDeque ir ProfilingResultList
 #### Pakeista
 - Vektorių analizės rezultatai pervadinti į ProfilingResultVector.
