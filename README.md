@@ -10,10 +10,30 @@
 - Surinkti duomenys išvedami į ekraną arba į rezultatų failą.
 - Vartotojui suteikiama galimybė pažymius generuoti automatiškai.
 - Vartotojui suteikiama galimybė galutinį balą apskaičiuoti pagal pažymių medianą
+## Programos išvedimas
+```shell
+Pasirinkite funkcija. 1 - duomenis rink is failo, 2 - duomenis rink is konsoles,3 - performance profiler: 2
+Ivesk studento varda ir pavarde: Paulius Pocius
+Pasirinkite funkcija. 1 - pazymius generuok automatiskai, 2 - pazymius vesti ranka: 1
+Pasirinkite funkcija. 1 - skaiciuok pagal vidurki, 2 - skaiciuok pagal mediana: 1
+Pasirinkite funkcija. 1 - naudok masyvus, 2 - naudok vektorius: 2
+Kiek pazymiu generuoti? 10
 
-## Programos išvedimas 
-## ![Programos išvedimas](uzd2/Išvedimas.png)
-
+Paulius Pocius
+Pazymiai:
+1.01
+1.08
+1.86
+2.80
+6.28
+6.76
+7.27
+8.96
+9.25
+9.39
+Egzaminas - 2.29
+Galutinis - 3.56
+```
 ## Įdiegimas naudojant `GCC`kompiliatorių 
 
 - `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
@@ -26,17 +46,17 @@
 
 |Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |n = 1000000|
 |-----------------------------|----------|------------|------------|------------|-----------|-----------|
-|Duomenų nuskaitymas iš failo |0.000994 s|0.003007 s|0.0240739 s |0.237648  s|2.45851  s|13.4069  s|
-|Duomenų išrikiavimas         |0        s|0         s|0.0010014 s |0.0110305 s|0.113328 s|0.653712 s|
-|Grand Total                  |0.000994 s|0.003007 s|0.0250753 s |0.248679  s|2.57184  s|14.0606  s|
+|Duomenų nuskaitymas iš failo |0.00099 s|0.003 s|0.024074 s |0.237648  s|2.45851  s|13.4069  s|
+|Duomenų išrikiavimas         |0        s|0         s|0.001001 s |0.0110305 s|0.113328 s|0.653712 s|
+|Grand Total                  |0.00099 s|0.003 s|0.025075 s |0.248679  s|2.57184  s|14.0606  s|
 
 ### Matuojame laiką dirbdami su list, kur n duomenų skaičius
 
 |Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |n = 1000000|
 |-----------------------------|----------|------------|------------|------------|-----------|-----------|
-|Duomenų nuskaitymas iš failo |0.001003 s|0.00304 s|0.0240901 s|0.231633  s|2.44951 s|13.4642  s|
-|Duomenų išrikiavimas         |0        s|0         s|0.0010023 s|0.0070191 s|0.0792106 s|0.384052 s|
-|Grand Total                  |0.001003 s|0.00304 s|0.0250924 s|0.238652  s|2.52872  s|13.8483  s|
+|Duomenų nuskaitymas iš failo |0.00100 s|0.003 s|0.0240901 s|0.23163  s|2.44951 s|13.4642  s|
+|Duomenų išrikiavimas         |0        s|0         s|0.0010023 s|0.007019 s|0.0792106 s|0.384052 s|
+|Grand Total                  |0.00100 s|0.003 s|0.0250924 s|0.23865  s|2.52872  s|13.8483  s|
 
 ### Matuojame laiką dirbdami su deque, kur n duomenų skaičius
 
@@ -52,19 +72,15 @@ Jei duomenų skaičius nėra didelis konteinerių sparta yra apyligė, tačiau, 
 
 
 ## Versijų istorija (changelog)
-
-### [Changelog v0.5 (2018-03-12)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.5) (Naujausia versija)
+### [Changelog v0.5.1 (2018-03-15)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.5.1) (Naujausia versija)
 #### Pridėta
-- Sukurtos funkcijos, leidžiančios dirbti su
-  ```c++ 
-   std::list
-   std::deque
-  ```
-- Įkelti atnaujinti analizės rezultatai: ProfilingResultDeque ir ProfilingResultList
+- Sukurtas wiki, į kurį iš ReadMe perkelta versijų istorija.
+- ReadMe sukurta nuorodą į pilną versijų istoriją esančia wikije.
+- Į ReadMe įrašyti veikimo spartos analizės rezultatai.
 #### Pakeista
-- Vektorių analizės rezultatai pervadinti į ProfilingResultVector.
-- Atnaujintas ReadMe
-
+- Atnaujintas programos įsidiegimo vadovas ReadMe faile.
+- Vietoje išvedimo nuotraukos naudojamas tekstas.
+- Atnaujintas žodžių lietus.
 ### [Pilna versijų istorijos versija](https://github.com/AugustinasMKVU/OOP-Task-2/wiki/Changelog)
 
 ## Naudingos nuorodos
