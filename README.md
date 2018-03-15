@@ -17,8 +17,8 @@
 ## Įdiegimas naudojant `GCC`kompiliatorių 
 
 - `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
-- `cd uzd2`
-- `g++ -std=c++11 main.cpp -o main`
+- `cd OOP-Task-2/uzd2/cpp`
+- `g++ -std=c++11 *.cpp  -o main`
 - `./main`
 
 
