@@ -64,7 +64,7 @@ Galutinis - 3.56
 |-----------------------------|----------|------------|------------|------------|-----------|-----------|
 |Duomenų nuskaitymas iš failo |0 s|0.003007 s|0.0029918 s |0.229609  s|2.42745  s|12.1388  s|
 |Duomenų išrikiavimas         |0        s|0         s|0 s |0.0070187 s|0.067179 s|0.316844 s|
-|Grand Total                  |0 s|0.003007 s|0.0029918 s |0.236628  s|2.49463  s|12.4557  s|
+|Grand Total                  |0 s|0.003007 s|0.0.0230613 s |0.236628  s|2.49463  s|12.4557  s|
 
 ### Išvados:
 Jei duomenų skaičius nėra didelis konteinerių sparta yra apyligė, tačiau, kai n >= 100000, pradeda matytis, jog deque yra sparčiausias
