@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <iostream>
 #include <chrono>
-#include <random>
 #include <vector>
 #include <list>
 #include <deque>
@@ -20,8 +19,6 @@ using std::deque;
 using std::endl;
 using std::string;
 using std::vector;
-using std::mt19937;
-using std::uniform_real_distribution;
 using std::ifstream;
 using std::ofstream;
 

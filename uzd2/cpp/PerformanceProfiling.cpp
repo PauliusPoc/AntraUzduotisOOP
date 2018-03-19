@@ -3,6 +3,10 @@
 //
 
 #include "../headers/PerformanceProfiling.h"
+#include <iostream>
+#include <cmath>
+#include <numeric>
+#include <algorithm>
 
 using laikas = std::chrono::high_resolution_clock;
 using ns = std::chrono::microseconds;
@@ -14,6 +18,14 @@ using std::endl;
 using std::cin;
 using std::string;
 using std::vector;
+using std::cout;
+
+bool RibaV (Kolega& val) {
+    return val.galBalasV >= 6.0;
+}
+bool RibaM (Kolega& val) {
+    return val.galBalasM >= 6.0;
+}
 
 void StartTesting(const unsigned int nTestu) {
     ofstream pr, prL, prD;
@@ -54,14 +66,14 @@ void StartTesting(const unsigned int nTestu) {
 
     for (unsigned int i = 1; i <= nTestu; i++){
         StartProfiling(i, pr, static_cast<unsigned int>(metod));
-        StartProfilingL(i,prL,static_cast<unsigned int>(metod));
-        StartProfilingD(i,prD,static_cast<unsigned int>(metod));
+        //StartProfilingL(i,prL,static_cast<unsigned int>(metod));
+        //StartProfilingD(i,prD,static_cast<unsigned int>(metod));
     }
 }
 
 void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
 
-    vector<Kolega> kolegos, geek, los;
+    vector<Kolega> kolegos{}, geek{}, los{};
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
     string fi = "perf" + std::__cxx11::to_string(dydis) + "_IN.txt";
@@ -75,14 +87,20 @@ void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
     std::chrono::duration<double> diff = end - start;
     auto grandTotal = diff;
     pr <<"Nuskaitymas užtruko  "<< (diff).count()<<" s."<<endl;
-
+    /*
     start = laikas::now();
     ArKietas(kolegos,geek,los, met == 1);
     end = laikas::now();
     diff = end - start;
     pr <<"Rūšiavimas užtruko  "<< (diff).count()<<" s."<<endl;
     grandTotal += diff;
-
+    */
+    start = laikas::now();
+    ArKietas(kolegos,geek, met == 1);
+    end = laikas::now();
+    diff = end - start;
+    pr <<"Rūšiavimas užtruko (ištrinant)  "<< (diff).count()<<" s."<<endl;
+    grandTotal += diff;
     pr <<"Iš viso:  "<< (grandTotal).count()<<" s."<<endl;
 
 
@@ -126,11 +144,19 @@ void StartProfilingL(unsigned int n, ofstream &pr, const unsigned int met) {
     auto grandTotal = diff;
     pr <<"Nuskaitymas užtruko  "<< (diff).count()<<" s."<<endl;
 
+    /*
     start = laikas::now();
     ArKietas(kolegos,geek,los, met == 1);
     end = laikas::now();
     diff = end - start;
     pr <<"Rūšiavimas užtruko  "<< (diff).count()<<" s."<<endl;
+    grandTotal += diff;
+    */
+    start = laikas::now();
+    ArKietas(kolegos,geek, met == 1);
+    end = laikas::now();
+    diff = end - start;
+    pr <<"Rūšiavimas užtruko (ištrinant)  "<< (diff).count()<<" s."<<endl;
     grandTotal += diff;
 
     pr <<"Iš viso:  "<< (grandTotal).count()<<" s."<<endl;
@@ -176,11 +202,19 @@ void StartProfilingD(unsigned int n, ofstream &pr, const unsigned int met) {
     auto grandTotal = diff;
     pr <<"Nuskaitymas užtruko  "<< (diff).count()<<" s."<<endl;
 
+    /*
     start = laikas::now();
     ArKietas(kolegos,geek,los, met == 1);
     end = laikas::now();
     diff = end - start;
     pr <<"Rūšiavimas užtruko  "<< (diff).count()<<" s."<<endl;
+    grandTotal += diff;
+    */
+    start = laikas::now();
+    ArKietas(kolegos,geek, met == 1);
+    end = laikas::now();
+    diff = end - start;
+    pr <<"Rūšiavimas užtruko (ištrinant)  "<< (diff).count()<<" s."<<endl;
     grandTotal += diff;
 
     pr <<"Iš viso:  "<< (grandTotal).count()<<" s."<<endl;
@@ -209,3 +243,74 @@ void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, deque<Kolega> &lose, bo
         }
     }
 }
+
+void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu) {
+
+    for (auto &k : koleg){
+        if (arVidurkiu){
+            double suma{};
+            suma = std::accumulate(k.nDarbai.begin(), k.nDarbai.end(), 0.0);
+            k.galBalasV = suma / k.nDarbai.size();
+            if (k.galBalasV >= 6) geek.push_back(k);
+        } else {
+            sort(k.nDarbai.begin(), k.nDarbai.end());
+            k.galBalasM = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
+                                             : k.nDarbai[k.nDarbai.size() / 2];
+            if (k.galBalasM >= 6) geek.push_back(k);
+        }
+    }
+    koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());
+    cout << geek.size() << " " << koleg.size() << endl;
+}
+void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, bool arVidurkiu) {
+
+    auto k = koleg.begin();
+    while (k != koleg.end()){
+        if (arVidurkiu){
+            double suma{};
+            for (auto paz : k->nDarbai)
+                suma += paz;
+            if(suma / k->nDarbai.size() >= 6.0){
+                geek.push_back(*k);
+                k = koleg.erase(k);
+            }
+            else k++;
+        } else{
+            double med{};
+            sort(k->nDarbai.begin(), k->nDarbai.end());
+            med = k->nDarbai.size() % 2 == 0 ? (k->nDarbai[k->nDarbai.size() / 2] + k->nDarbai[k->nDarbai.size() / 2 - 1]) / 2
+                                             : k->nDarbai[k->nDarbai.size() / 2];
+
+            if(med >= 6){
+                geek.push_back(*k);
+                k = koleg.erase(k);
+            } else k++;
+        }
+    }
+}
+void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, bool arVidurkiu) {
+
+    for (unsigned int i = 0; i < koleg.size(); i++){
+        Kolega *k = &koleg[i];
+        if (arVidurkiu){
+            double suma{};
+            for (auto paz : k->nDarbai)
+                suma += paz;
+            if(suma / k->nDarbai.size() >= 6.0){
+                geek.push_back(*k);
+                koleg.erase(koleg.begin() + i);
+            }
+        } else{
+            double med{};
+            sort(k->nDarbai.begin(), k->nDarbai.end());
+            med = k->nDarbai.size() % 2 == 0 ? (k->nDarbai[k->nDarbai.size() / 2] + k->nDarbai[k->nDarbai.size() / 2 - 1]) / 2
+                                            : k->nDarbai[k->nDarbai.size() / 2];
+
+            if(med >= 6){
+                geek.push_back(*k);
+                koleg.erase(koleg.begin() + i);
+            }
+        }
+    }
+}
+

@@ -24,4 +24,8 @@ void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, list<Kolega> &lose, bool 
 void StartProfilingD(unsigned int n, ofstream &pr, const unsigned int met);
 void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, deque<Kolega> &lose, bool arVidurkiu);
 
+void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu);
+void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, bool arVidurkiu);
+void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, bool arVidurkiu);
+
 #endif //UZD2_PERFORMANCEPROFILING_H
