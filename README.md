@@ -44,30 +44,34 @@ Galutinis - 3.56
 ## Veikimo spartos analizė
 ### Matuojame laiką dirbdami su vektoriais, kur n duomenų skaičius (skirstome į du naujus konteinerius)
 
-|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |n = 1000000|
-|-----------------------------|----------|------------|------------|------------|-----------|-----------|
-|Duomenų nuskaitymas iš failo |0.00099 s|0.003 s|0.024074 s |0.237648  s|2.45851  s|13.4069  s|
-|Duomenų išrikiavimas         |0        s|0         s|0.001001 s |0.0110305 s|0.113328 s|0.653712 s|
-|Grand Total                  |0.00099 s|0.003 s|0.025075 s |0.248679  s|2.57184  s|14.0606  s|
+|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |
+|-----------------------------|----------|------------|------------|------------|-----------|
+|Duomenų nuskaitymas iš failo |0.00099 s|0.003 s|0.024074 s |0.237648  s|2.45851  s|
+|Duomenų išrikiavimas (skirstant)|0        s|0         s|0.001001 s |0.0110305 s|0.113328 s|
+|Duomenų išrikiavimas (trinant)  |0        s|0.001        s|0.007 s |6.63 s|628 s|
+|Duomenų išrikiavimas (trinant pasitelkus algoritmus)  |0.002       s|0.003       s|0.03 s |0.3 s|0.09 s|
 
 ### Matuojame laiką dirbdami su list, kur n duomenų skaičius
 
-|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |n = 1000000|
-|-----------------------------|----------|------------|------------|------------|-----------|-----------|
-|Duomenų nuskaitymas iš failo |0.00100 s|0.003 s|0.0240901 s|0.23163  s|2.44951 s|13.4642  s|
-|Duomenų išrikiavimas         |0        s|0         s|0.0010023 s|0.007019 s|0.0792106 s|0.384052 s|
-|Grand Total                  |0.00100 s|0.003 s|0.0250924 s|0.23865  s|2.52872  s|13.8483  s|
+|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |
+|-----------------------------|----------|------------|------------|------------|-----------|
+|Duomenų nuskaitymas iš failo |0.00100 s|0.003 s|0.0240901 s|0.23163  s|2.44951 s|
+|Duomenų išrikiavimas (skirstant)|0        s|0         s|0.0010023 s|0.007019 s|0.0792106 s|
+|Duomenų išrikiavimas (trinant)  |0        s|0.0005      s|0.001 s |0.004 s|0.044 s|
 
 ### Matuojame laiką dirbdami su deque, kur n duomenų skaičius
 
-|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |n = 1000000|
-|-----------------------------|----------|------------|------------|------------|-----------|-----------|
-|Duomenų nuskaitymas iš failo |0 s|0.003007 s|0.0230613 s |0.229609  s|2.42745  s|12.1388  s|
-|Duomenų išrikiavimas         |0        s|0         s|0 s |0.0070187 s|0.067179 s|0.316844 s|
-|Grand Total                  |0 s|0.003007 s|0.0230613 s |0.236628  s|2.49463  s|12.4557  s|
+|Funkcija                     |n = 10    |n = 100     |n = 1000    |n = 10000   |n = 100000 |
+|-----------------------------|----------|------------|------------|------------|-----------|
+|Duomenų nuskaitymas iš failo |0 s|0.003007 s|0.0230613 s |0.229609  s|2.42745  s|
+|Duomenų išrikiavimas (skirstant)|0        s|0         s|0 s |0.0070187 s|0.067179 s|
+|Duomenų išrikiavimas (trinant)  |0        s|0.0005         s|0.03 s |3 s|301 s|
 
 ### Išvados:
-Jei duomenų skaičius nėra didelis konteinerių sparta yra apyligė, tačiau, kai n >= 100000, pradeda matytis, jog deque yra sparčiausias
+Jei duomenų skaičius nėra didelis konteinerių sparta yra apyligė, tačiau, kai n >= 100000, pradeda matytis, jog deque yra sparčiausias, jei duomenis skirstome į naujus masyvus. Duomenis skirstant ištrinant netinkamus duomenis iš masyvo, matome aiškų list pranašumą. (Reiktų atsižvelgti, jog list atveju buvo naudojama erase funkcija, o su kitais konteineriais remove).
+
+## Algoritmų analizė
+Vietoje remove pritaikius algoritmą ```koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());``` vektoriui koleg, duomenų išrikiavimo trinant laikas sumažėjo nuo 628 s iki 0.0922454 s. Tokiu būdu vektorius gali laisvai konkuruoti su iki šiol pirmavusiu list. Reikia atsi=velgti ir į tai, kad kai kurių testų duomenys gali būti palankūs algoritmui, pvz. dydžioji dalis mokinių nėra galvočiai.
 
 
 
