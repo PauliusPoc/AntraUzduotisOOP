@@ -75,6 +75,14 @@ Vietoje remove pritaikius algoritmą ```koleg.erase(std::remove_if(koleg.begin()
 
 
 ## Versijų istorija (changelog)
+
+### [Changelog v1.0 (2018-03-22)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v1.0)
+#### Pridėta
+- Laikas išmatuotas abiejais darbo su konteineriais būdais (perkeliant ir trinant). Atsakymai įrašyti į ReadMe Failą.
+- Panaudota STL funkcija std::remove_if ir išmatuotas laikas elementus trinant pagal ją. Rezultatai aprašyti ReadMe.
+#### Ištrinta
+- Panaikintos compiliatoriaus šiukšlės.
+
 ### [Changelog v0.5.1 (2018-03-15)](https://github.com/AugustinasMKVU/OOP-Task-2/tree/v0.5.1) (Naujausia versija)
 #### Pridėta
 - Sukurtas wiki, į kurį iš ReadMe perkelta versijų istorija.
