@@ -71,8 +71,7 @@ Galutinis - 3.56
 Jei duomenų skaičius nėra didelis konteinerių sparta yra apyligė, tačiau, kai n >= 100000, pradeda matytis, jog deque yra sparčiausias, jei duomenis skirstome į naujus masyvus. Duomenis skirstant ištrinant netinkamus duomenis iš masyvo, matome aiškų list pranašumą. (Reiktų atsižvelgti, jog list atveju buvo naudojama erase funkcija, o su kitais konteineriais remove).
 
 ## Algoritmų analizė
-Vietoje remove pritaikius algoritmą ```koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());``` vektoriui koleg, duomenų išrikiavimo trinant laikas sumažėjo nuo 628 s iki 0.0922454 s. Tokiu būdu vektorius gali laisvai konkuruoti su iki šiol pirmavusiu list. Reikia atsi=velgti ir į tai, kad kai kurių testų duomenys gali būti palankūs algoritmui, pvz. dydžioji dalis mokinių nėra galvočiai.
-
+Vietoje remove pritaikius algoritmą ```koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());``` vektoriui koleg, duomenų išrikiavimo trinant laikas sumažėjo nuo 628 s iki 0.0922454 s. Tokiu būdu vektorius gali laisvai konkuruoti su iki šiol pirmavusiu list.
 
 
 ## Versijų istorija (changelog)
