@@ -7,12 +7,14 @@
 #include <cmath>
 #include <numeric>
 #include <algorithm>
+#include <random>
 
 using laikas = std::chrono::high_resolution_clock;
 using ns = std::chrono::microseconds;
 using std::chrono::time_point;
 
 using std::uniform_int_distribution;
+using std::mt19937;
 using std::cout;
 using std::endl;
 using std::cin;
@@ -31,7 +33,7 @@ void StartTesting(const unsigned int nTestu) {
     ofstream pr, prL, prD;
     try {
         pr.open("ProfilingResultVector.txt", std::ios_base::out);
-        if (!pr.good()) throw "Error opening file";
+        if (!pr.good()) throw "Error opening file"; // NOLINT
     } catch (string &e){
         cout << e << endl;
         std::terminate();
@@ -66,14 +68,28 @@ void StartTesting(const unsigned int nTestu) {
 
     for (unsigned int i = 1; i <= nTestu; i++){
         StartProfiling(i, pr, static_cast<unsigned int>(metod));
-        //StartProfilingL(i,prL,static_cast<unsigned int>(metod));
-        //StartProfilingD(i,prD,static_cast<unsigned int>(metod));
+        StartProfilingL(i,prL,static_cast<unsigned int>(metod));
+        StartProfilingD(i,prD,static_cast<unsigned int>(metod));
+    }
+}
+
+void GeneruokTestui(unsigned int n, ofstream &fk) {
+    std::mt19937 mt(static_cast<long unsigned int>(std::chrono::_V2::system_clock::now().time_since_epoch().count()));
+    uniform_int_distribution<int> dist(1, 10);
+
+    for (unsigned int i = 1; i <= n; i++){
+        fk << "Vardas" + std::__cxx11::to_string(i) << " Pavarde" + std::__cxx11::to_string(i);
+        for (int j = 0; j < 6; j++){
+            fk << " " <<  std::__cxx11::to_string(dist(mt));
+        }
+        fk << endl;
     }
 }
 
 void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
 
     vector<Kolega> kolegos{}, geek{}, los{};
+
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
     string fi = "perf" + std::__cxx11::to_string(dydis) + "_IN.txt";
@@ -81,6 +97,8 @@ void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
     pr << "------------------------------------------------------------------------------------" << endl;
     pr << "Dirbame su " + std::to_string(dydis) + " įrašų" << endl;
 
+    ofstream fr(fi);
+    GeneruokTestui(dydis, fr);
     auto start = laikas::now();
     Nuskaitymas(kolegos, fi);
     auto end = laikas::now();
@@ -107,8 +125,9 @@ void StartProfiling(unsigned int n, ofstream &pr, const unsigned int met) {
     pr << "------------------------------------------------------------------------------------" << endl;
 
 }
-void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, vector<Kolega> &lose, bool arVidurkiu) {
 
+template<typename T>
+void ArKietas(T &koleg, T &geek, T &lose, bool arVidurkiu) {
     for (auto &k : koleg){
         if (arVidurkiu){
             double suma{};
@@ -118,7 +137,7 @@ void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, vector<Kolega> &lose,
             else lose.push_back(k);
         } else{
             double med{};
-            sort(k.nDarbai.begin(), k.nDarbai.end());
+            std::sort(k.nDarbai.begin(), k.nDarbai.end());
             med = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
                                             : k.nDarbai[k.nDarbai.size() / 2];
 
@@ -165,26 +184,6 @@ void StartProfilingL(unsigned int n, ofstream &pr, const unsigned int met) {
     pr << "------------------------------------------------------------------------------------" << endl;
 
 }
-void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, list<Kolega> &lose, bool arVidurkiu) {
-
-    for (auto &k : koleg){
-        if (arVidurkiu){
-            double suma{};
-            for (auto paz : k.nDarbai)
-                suma += paz;
-            if(suma / k.nDarbai.size() >= 6.0) geek.push_back(k);
-            else lose.push_back(k);
-        } else{
-            double med{};
-            sort(k.nDarbai.begin(), k.nDarbai.end());
-            med = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
-                                            : k.nDarbai[k.nDarbai.size() / 2];
-
-            if(med >= 6) geek.push_back(k);
-            else lose.push_back(k);
-        }
-    }
-}
 
 void StartProfilingD(unsigned int n, ofstream &pr, const unsigned int met) {
 
@@ -223,28 +222,9 @@ void StartProfilingD(unsigned int n, ofstream &pr, const unsigned int met) {
     pr << "------------------------------------------------------------------------------------" << endl;
 
 }
-void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, deque<Kolega> &lose, bool arVidurkiu) {
 
-    for (auto &k : koleg){
-        if (arVidurkiu){
-            double suma{};
-            for (auto paz : k.nDarbai)
-                suma += paz;
-            if(suma / k.nDarbai.size() >= 6.0) geek.push_back(k);
-            else lose.push_back(k);
-        } else{
-            double med{};
-            sort(k.nDarbai.begin(), k.nDarbai.end());
-            med = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
-                                            : k.nDarbai[k.nDarbai.size() / 2];
-
-            if(med >= 6) geek.push_back(k);
-            else lose.push_back(k);
-        }
-    }
-}
-
-void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu) {
+template<typename T>
+void ArKietas(T &koleg, T &geek, bool arVidurkiu) {
 
     for (auto &k : koleg){
         if (arVidurkiu){
@@ -253,7 +233,7 @@ void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu) {
             k.galBalasV = suma / k.nDarbai.size();
             if (k.galBalasV >= 6) geek.push_back(k);
         } else {
-            sort(k.nDarbai.begin(), k.nDarbai.end());
+            std::sort(k.nDarbai.begin(), k.nDarbai.end());
             k.galBalasM = k.nDarbai.size() % 2 == 0 ? (k.nDarbai[k.nDarbai.size() / 2] + k.nDarbai[k.nDarbai.size() / 2 - 1]) / 2
                                              : k.nDarbai[k.nDarbai.size() / 2];
             if (k.galBalasM >= 6) geek.push_back(k);
@@ -261,56 +241,5 @@ void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu) {
     }
     if (arVidurkiu) koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());
     else koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaM), koleg.end());
-}
-void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, bool arVidurkiu) {
-
-    auto k = koleg.begin();
-    while (k != koleg.end()){
-        if (arVidurkiu){
-            double suma{};
-            for (auto paz : k->nDarbai)
-                suma += paz;
-            if(suma / k->nDarbai.size() >= 6.0){
-                geek.push_back(*k);
-                k = koleg.erase(k);
-            }
-            else k++;
-        } else{
-            double med{};
-            sort(k->nDarbai.begin(), k->nDarbai.end());
-            med = k->nDarbai.size() % 2 == 0 ? (k->nDarbai[k->nDarbai.size() / 2] + k->nDarbai[k->nDarbai.size() / 2 - 1]) / 2
-                                             : k->nDarbai[k->nDarbai.size() / 2];
-
-            if(med >= 6){
-                geek.push_back(*k);
-                k = koleg.erase(k);
-            } else k++;
-        }
-    }
-}
-void ArKietas(deque<Kolega> &koleg, deque<Kolega> &geek, bool arVidurkiu) {
-
-    for (unsigned int i = 0; i < koleg.size(); i++){
-        Kolega *k = &koleg[i];
-        if (arVidurkiu){
-            double suma{};
-            for (auto paz : k->nDarbai)
-                suma += paz;
-            if(suma / k->nDarbai.size() >= 6.0){
-                geek.push_back(*k);
-                koleg.erase(koleg.begin() + i);
-            }
-        } else{
-            double med{};
-            sort(k->nDarbai.begin(), k->nDarbai.end());
-            med = k->nDarbai.size() % 2 == 0 ? (k->nDarbai[k->nDarbai.size() / 2] + k->nDarbai[k->nDarbai.size() / 2 - 1]) / 2
-                                            : k->nDarbai[k->nDarbai.size() / 2];
-
-            if(med >= 6){
-                geek.push_back(*k);
-                koleg.erase(koleg.begin() + i);
-            }
-        }
-    }
 }
 
