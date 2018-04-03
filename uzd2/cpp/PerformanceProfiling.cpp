@@ -259,8 +259,8 @@ void ArKietas(vector<Kolega> &koleg, vector<Kolega> &geek, bool arVidurkiu) {
             if (k.galBalasM >= 6) geek.push_back(k);
         }
     }
-    koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());
-    cout << geek.size() << " " << koleg.size() << endl;
+    if (arVidurkiu) koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaV), koleg.end());
+    else koleg.erase(std::remove_if(koleg.begin(), koleg.end(), RibaM), koleg.end());
 }
 void ArKietas(list<Kolega> &koleg, list<Kolega> &geek, bool arVidurkiu) {
 
