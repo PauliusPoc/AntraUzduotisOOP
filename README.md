@@ -37,9 +37,10 @@ Galutinis - 3.56
 ## Įdiegimas naudojant `GCC`kompiliatorių 
 
 - `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
-- `cd OOP-Task-2/uzd2/cpp`
-- `g++ -std=c++11 *.cpp  -o main`
-- `./main`
+- `cd OOP-Task-2/uzd2`
+- `cmake . -G "MinGW Makefiles"`
+- `mingw32-make`
+- `.\uzd2`
 
 ## Veikimo spartos analizė
 ### Matuojame laiką dirbdami su vektoriais, kur n duomenų skaičius (skirstome į du naujus konteinerius)
