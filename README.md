@@ -36,8 +36,8 @@ Galutinis - 3.56
 ```
 ## Įdiegimas naudojant `GCC`kompiliatorių 
 
-- `git clone https://github.com/AugustinasMKVU/OOP-Task-2.git`
-- `cd OOP-Task-2/uzd2`
+- `git clone https://github.com/AugustinasMKVU/AntraUzduotis.git`
+- `cd AntraUzduotis/uzd2`
 - `cmake . -G "MinGW Makefiles"`
 - `mingw32-make`
 - `.\uzd2`
