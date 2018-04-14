@@ -1,5 +1,12 @@
 
 # Augustino Makevičiaus objektinio programavimo 3 užduotis. (VU ISI 1 kursas)
+
+## Programos tiklas
+Patobulinkite 2-ojo darbo realizaciją:
+- Vietoj Studentas (StudentoInfo) structūros atsižvelgdami į Jūsų pačių atliktą antrą užduotį susikurkite Studentas (StudentoInfo) class'ę.
+
+# Antrosios užduoties aprašymas
+
 # ![Žemėlapis](WordItOut.png)
 
 # Vertinimas 
