@@ -1,5 +1,5 @@
 
-# Augustino Makevičiaus objektinio programavimo 2 užduotis. (VU ISI 1 kursas)
+# Augustino Makevičiaus objektinio programavimo 3 užduotis. (VU ISI 1 kursas)
 # ![Žemėlapis](WordItOut.png)
 
 # Vertinimas 
