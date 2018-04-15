@@ -5,6 +5,17 @@
 Patobulinkite 2-ojo darbo realizaciją:
 - Vietoj Studentas (StudentoInfo) structūros atsižvelgdami į Jūsų pačių atliktą antrą užduotį susikurkite Studentas (StudentoInfo) class'ę.
 
+## Versijų istorija (changelog)
+
+### Changelog (2018-04-15)
+#### Pridėta
+- Sukurta klasė ```Studentas```. 
+#### Pakeista 
+- Buvusios funkcijos perrašytos taip, kad būtų naudojami klasių privalumai.
+- Profiliavimas sumažintas iki 10000 (su didesniu 10 laispniu gauname std::bad_alloc)
+#### Pašalinta
+- Panaikinta struktūra ```Kolega``
+
 # Antrosios užduoties aprašymas
 
 # ![Žemėlapis](WordItOut.png)
