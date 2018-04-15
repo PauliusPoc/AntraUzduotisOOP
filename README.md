@@ -60,7 +60,7 @@ Galutinis - 3.56
 ## Įdiegimas naudojant `GCC`kompiliatorių 
 
 - `git clone https://github.com/AugustinasMKVU/AntraUzduotis.git`
-- `cd AntraUzduotis/uzd2`
+- `cd AntraUzduotis/AntraUzduotis`
 - `cmake . -G "MinGW Makefiles"`
 - `mingw32-make`
 - `.\uzd2`
