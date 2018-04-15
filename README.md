@@ -7,7 +7,7 @@ Patobulinkite 2-ojo darbo realizaciją:
 
 ## Versijų istorija (changelog)
 
-### Changelog (2018-04-15)
+### Changelog v1.1 (2018-04-15)
 #### Pridėta
 - Sukurta klasė ```Studentas```. 
 #### Pakeista 
