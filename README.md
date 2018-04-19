@@ -5,16 +5,23 @@
 Patobulinkite 2-ojo darbo realizaciją:
 - Vietoj Studentas (StudentoInfo) structūros atsižvelgdami į Jūsų pačių atliktą antrą užduotį susikurkite Studentas (StudentoInfo) class'ę.
 
-## Versijų istorija (changelog)
+## Spartos analizė
+### Rezultatai
+Neoptimatizuota
+### ![O0](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O0.png)
+Optimatizuota naudojant O1
+### ![O1](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O1.png)
+Optimatizuota naudojant O2
+### ![O2](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O2.png)
+Optimatizuota naudojant O2
+### ![O3](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O3.png)
+### Išvada
+Matome, kad tinkamai realizavus klasę, sparta ne tik išliko tokia pat, bet pasitelkus papildomus algoritmus spara net padidėjo.
+Pastebėta, kad tinkamai realizavus klasę, naudojant optimatizavimo flag'us didelio skirtumo nesusidaro (skirtumas sekundės dalyse).
+Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline funkcijas, nekuria memory leak'ų implementacijos sparta prilygsta ```O3``` optimatizacijos lygiui.
 
-### Changelog v1.1 (2018-04-15)
-#### Pridėta
-- Sukurta klasė ```Studentas```. 
-#### Pakeista 
-- Buvusios funkcijos perrašytos taip, kad būtų naudojami klasių privalumai.
-- Profiliavimas sumažintas iki 10000 (su didesniu 10 laispniu gauname std::bad_alloc)
-#### Pašalinta
-- Panaikinta struktūra ```Kolega``
+
+## Versijų istorija (changelog)
 
 # Antrosios užduoties aprašymas
 
