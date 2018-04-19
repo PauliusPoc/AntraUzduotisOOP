@@ -30,8 +30,6 @@ void StartTesting(const unsigned int nTestu);
 void GeneruokTestui(unsigned int n, std::ofstream &fk);
 
 void StartProfiling(unsigned int n, std::ofstream &pr, const unsigned int met);
-void StartProfilingL(unsigned int n, std::ofstream &pr, const unsigned int met);
-void StartProfilingD(unsigned int n, std::ofstream &pr, const unsigned int met);
 
 template<typename T>
 void ArKietas(T &koleg, T &geek, T &lose, bool arVidurkiu);
