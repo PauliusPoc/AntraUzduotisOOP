@@ -12,9 +12,6 @@
 
 
 void Nuskaitymas(vector<Studentas> &kolegos, string s);
-void Nuskaitymas(std::list<Studentas> &kolegos, string s);
-void Nuskaitymas(std::deque<Studentas> &kolegos, string s);
-
 void Rasymas(vector<Studentas> &kolegos);
 
 #endif //ANTRAUZDUOTIS_DARBASFAILAI_H

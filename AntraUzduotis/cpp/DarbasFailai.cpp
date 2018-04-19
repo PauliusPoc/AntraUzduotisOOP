@@ -5,14 +5,11 @@
 #include <utility>
 #include "../headers/DarbasFailai.h"
 
-bool KolegosCompare(Studentas lhs, Studentas rhs) {
-    return  lhs.compare(std::move(rhs));
-}
-
 void Nuskaitymas(vector<Studentas> &kolegos, string s) {
 
-    Studentas k;
+    Studentas *k = new Studentas();
     std::ifstream fd;
+    kolegos.reserve(100000);
 
     try {
         fd.open( s, std::ios::in);
@@ -25,55 +22,19 @@ void Nuskaitymas(vector<Studentas> &kolegos, string s) {
         return;
     }
 
-    while (fd >> k) {
-        kolegos.push_back(k);
+    while (fd >> *k) {
+        kolegos.push_back(*k);
+        k = new Studentas();
     }
 }
-void Nuskaitymas(std::list<Studentas> &kolegos, string s){
-    Studentas k;
-    std::ifstream fd;
 
-    try {
-        fd.open( s, std::ios::in);
-        if (!fd.good()) throw "Error opening file";
-    } catch (string &e){
-        cout << e << endl;
-        return;
-    }catch (char const* e){
-        cout << "Duomenu failas neegzistuoja" << endl;
-        return;
-    }
-
-    while (fd >> k) {
-        kolegos.push_back(k);
-    }
-}
-void Nuskaitymas(std::deque<Studentas> &kolegos, string s){
-    Studentas k;
-    std::ifstream fd;
-
-    try {
-        fd.open( s, std::ios::in);
-        if (!fd.good()) throw "Error opening file";
-    } catch (string &e){
-        cout << e << endl;
-        return;
-    }catch (char const* e){
-        cout << "Duomenu failas neegzistuoja" << endl;
-        return;
-    }
-
-    while (fd >> k) {
-        kolegos.push_back(k);
-    }
-}
 void Rasymas(vector<Studentas> &kolegos) {
 
     const int kiekVietos = 18;
     const int vienasTabas = 4;
 
     if(!kolegos.empty()) {
-        std::sort(kolegos.begin(), kolegos.end(), KolegosCompare);
+        //std::sort(kolegos.begin(), kolegos.end());
         auto dv = kolegos[0].vardas().length(), dp = kolegos[0].pavarde().length();
         for (Studentas &kolego : kolegos) {
             if (kolego.vardas().length() > dv) dv = kolego.vardas().length();
