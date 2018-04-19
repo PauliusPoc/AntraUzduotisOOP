@@ -13,15 +13,6 @@ bool RibaM (Studentas& val) {
 }
 
 void StartTesting(const unsigned int nTestu) {
-    std::ofstream pr, prL, prD;
-    try {
-        pr.open("ProfilingResultVector.txt", std::ios_base::out);
-        if (!pr.good()) throw "Error opening file"; // NOLINT
-    } catch (string &e){
-        cout << e << endl;
-        //std::terminate();
-    }
-
     c2:
     int metod{};
     if (cout << "Pasirinkite funkcija. 1 - skaiciuok pagal vidurki, 2 - skaiciuok pagal mediana: " && !(cin >> metod)) {
@@ -36,7 +27,7 @@ void StartTesting(const unsigned int nTestu) {
     }
 
     for (unsigned int i = 1; i <= nTestu; i++){
-        StartProfiling(i, pr, static_cast<unsigned int>(metod));
+        StartProfiling(i, static_cast<unsigned int>(metod));
     }
 }
 
@@ -53,37 +44,35 @@ void GeneruokTestui(unsigned int n, std::ofstream &fk) {
     }
 }
 
-void StartProfiling(unsigned int n, std::ofstream &pr, const unsigned int met) {
+void StartProfiling(unsigned int n, const unsigned int met) {
 
     vector<Studentas> kolegos, geek;
 
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
-    cout << dydis << endl;
     string fi = "perf" + std::__cxx11::to_string(dydis) + "_IN.txt";
 
     std::ofstream fr (fi);
     GeneruokTestui(dydis,fr);
 
-    pr << "------------------------------------------------------------------------------------" << endl;
-    pr << "Dirbame su " + std::to_string(dydis) + " įrašų" << endl;
+    cout << "------------------------------------------------------------------------------------" << endl;
+    cout << "Dirbame su 10 ^ " + std::to_string(n) + " irasu" << endl;
 
     auto start = laikas::now();
     Nuskaitymas(kolegos, fi);
     auto end = laikas::now();
     std::chrono::duration<double> diff = end - start;
     auto grandTotal = diff;
-    pr <<"Nuskaitymas užtruko  "<< (diff).count()<<" s."<<endl;
+    cout <<"Nuskaitymas uztruko  "<< (diff).count()<<" s."<<endl;
     start = laikas::now();
     ArKietas(kolegos,geek, met == 1);
     end = laikas::now();
     diff = end - start;
-    pr <<"Rūšiavimas užtruko (ištrinant)  "<< (diff).count()<<" s."<<endl;
+    cout <<"Rusiavimas uztruko (istrinant)  "<< (diff).count()<<" s."<<endl;
     grandTotal += diff;
-    pr <<"Iš viso:  "<< (grandTotal).count()<<" s."<<endl;
+    cout <<"Is viso:  "<< (grandTotal).count()<<" s."<<endl;
 
 
-    pr << "------------------------------------------------------------------------------------" << endl;
 
 }
 

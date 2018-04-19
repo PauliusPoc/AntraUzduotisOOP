@@ -29,7 +29,7 @@ void StartTesting(const unsigned int nTestu);
 
 void GeneruokTestui(unsigned int n, std::ofstream &fk);
 
-void StartProfiling(unsigned int n, std::ofstream &pr, const unsigned int met);
+void StartProfiling(unsigned int n, const unsigned int met);
 
 template<typename T>
 void ArKietas(T &koleg, T &geek, T &lose, bool arVidurkiu);

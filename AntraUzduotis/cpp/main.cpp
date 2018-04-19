@@ -31,6 +31,6 @@ void DarbasSuFailais() {
 }
 
 void Performance(){
-    const unsigned int nTestu = 6; // kiek testų  atlkti?
+    const unsigned int nTestu = 5; // kiek testų  atlkti?
     StartTesting(nTestu);
 }
