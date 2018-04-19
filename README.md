@@ -23,6 +23,20 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 ## Versijų istorija (changelog)
 
+### Changelog (2018-04-20)
+#### Pridėta
+- Vieetoj Kolega structūros sukurta Studentas class'ė
+- Palyginta abiejų Jūsų programų, naudojančios struct iš ankstesniojo darbos ir naudojančios class tipo Studentus iš dabartinės realizacijos, spartą.
+- Atlikta eksperimentinė analizė priklausomai nuo kompiliatoriaus optimizavimo lygio, nurodomo per flag'us: O1, O2, O3 ir papildytas README.md failas gautais rezultatais su optimizavimo flag'ais.
+#### Pakeista
+- Daugelis funkcijų perrašytos spartos tikslams:
+- - Pradėta naudoti std::stable_partition
+- - Apsisaugota nuo memory  leak'ų, darbe su failais.
+#### Pašalinta
+- Panaikinta galimybė dirbti su konsole.
+- Panaikinta galimybė dirbti su std::list ir sd::deque.
+
+
 # Antrosios užduoties aprašymas
 
 # ![Žemėlapis](WordItOut.png)
