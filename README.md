@@ -16,7 +16,7 @@ Optimatizuota naudojant O2
 Optimatizuota naudojant O2
 ### ![O3](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O3.png)
 ### Išvada
-Matome, kad tinkamai realizavus klasę, sparta ne tik išliko tokia pat, bet pasitelkus papildomus algoritmus spara net padidėjo.
+Matome, kad tinkamai realizavus klasę, sparta ne tik išliko tokia pat, bet pasitelkus papildomus algoritmus sparta net padidėjo.
 Pastebėta, kad tinkamai realizavus klasę, naudojant optimatizavimo flag'us didelio skirtumo nesusidaro (skirtumas sekundės dalyse).
 Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline funkcijas, nekuria memory leak'ų implementacijos sparta prilygsta ```O3``` optimatizacijos lygiui.
 
@@ -25,7 +25,7 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 ### [Changelog v0.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1)
 #### Pridėta
-- Vieetoj Kolega structūros sukurta Studentas class'ė
+- Vietoj Kolega structūros sukurta Studentas class'ė
 - Palyginta abiejų Jūsų programų, naudojančios struct iš ankstesniojo darbos ir naudojančios class tipo Studentus iš dabartinės realizacijos, spartą.
 - Atlikta eksperimentinė analizė priklausomai nuo kompiliatoriaus optimizavimo lygio, nurodomo per flag'us: O1, O2, O3 ir papildytas README.md failas gautais rezultatais su optimizavimo flag'ais.
 #### Pakeista
