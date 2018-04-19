@@ -20,33 +20,27 @@ using std::istream;
 using std::endl;
 using std::cout;
 
-using std::mt19937;
-using std::uniform_real_distribution;
-
 class Studentas {
     private:
         string vardas_{};
         string pavard_{};
         vector<double> nDarbai_{};
         double egzam_{};
-        void Auto(istream &fd);
-        void ByHand(istream &fd);
-
     public:
-        Studentas();
+        Studentas() : egzam_(0){}
 
-        string vardas() const { return vardas_; }
-        string pavarde() const { return pavard_; }
+        inline string vardas() const { return vardas_; }
+        inline string pavarde() const { return pavard_; }
 
         void print(unsigned int dv, unsigned int dp, std::ostream &fr);
-
-        void readFromKonsole(istream &fd, const unsigned int choice);
-        void printToKonsole(std::ostream &fr, const unsigned int metod);
-
         friend istream &operator>>( istream  &input, Studentas &S );
-        bool compare(Studentas rhs);
-        double galBalas(bool arVidurkis);
+
+        double vidurkis() const;
+        double mediana();
 };
+
+bool compare(const Studentas&, const Studentas&);
+
 
 
 #endif //ANTRAUZDUOTIS_STUDENTAS_H
