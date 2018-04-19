@@ -23,7 +23,7 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 ## Versijų istorija (changelog)
 
-### Changelog (2018-04-20)
+### [Changelog v0.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1)
 #### Pridėta
 - Vieetoj Kolega structūros sukurta Studentas class'ė
 - Palyginta abiejų Jūsų programų, naudojančios struct iš ankstesniojo darbos ir naudojančios class tipo Studentus iš dabartinės realizacijos, spartą.
@@ -36,3 +36,4 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 - Panaikinta galimybė dirbti su konsole.
 - Panaikinta galimybė dirbti su std::list ir sd::deque.
 
+## [Antrosios užduoties aprašymas](https://github.com/AugustinasMKVU/AntraUzduotisOOP/wiki/Antrosios-u%C5%BEduoties-apra%C5%A1ymas)
