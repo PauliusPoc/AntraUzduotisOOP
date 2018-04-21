@@ -23,6 +23,12 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 ## Versijų istorija (changelog)
 
+### [Changelog v0.1.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1.1)
+#### Pridėta
+- Implementuotas << operatorius Studentas klasėje
+#### Pakeista
+Pataisyta loginė klaida rūšiavimo funkcijoje.
+
 ### [Changelog v0.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1)
 #### Pridėta
 - Vietoj Kolega structūros sukurta Studentas class'ė
