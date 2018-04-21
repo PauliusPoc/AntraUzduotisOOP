@@ -17,6 +17,7 @@
 using std::string;
 using std::vector;
 using std::istream;
+using std::ostream;
 using std::endl;
 using std::cout;
 
@@ -32,9 +33,9 @@ class Studentas {
         inline string vardas() const { return vardas_; }
         inline string pavarde() const { return pavard_; }
 
-        void print(unsigned int dv, unsigned int dp, std::ostream &fr);
-        friend istream &operator>>( istream  &input, Studentas &S );
-
+        void print(unsigned int, unsigned int, std::ostream&);
+        friend istream &operator>>( istream&, Studentas& );
+        friend ostream &operator<<( ostream&, Studentas&);
         double vidurkis() const;
         double mediana();
 };

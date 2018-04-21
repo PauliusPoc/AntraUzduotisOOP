@@ -32,3 +32,7 @@ istream &operator>>(istream &input, Studentas &S) {
     input >> S.egzam_;
     return input;
 }
+ostream &operator<<(ostream &output, Studentas &S){
+    output << S.vardas_ << " " << S.pavard_ << " " << S.vidurkis() << " " << S.mediana() << endl;
+    return output;
+}
