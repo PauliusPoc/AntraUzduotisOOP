@@ -72,8 +72,6 @@ void StartProfiling(unsigned int n, const unsigned int met) {
     grandTotal += diff;
     cout <<"Is viso:  "<< (grandTotal).count()<<" s."<<endl;
 
-
-
 }
 
 template<typename T>
@@ -83,5 +81,5 @@ void ArKietas(T &koleg, T &geek, bool arVidurkiu) {
     auto it = std::stable_partition(koleg.begin(),koleg.end(),fx);
     geek.resize(std::distance(koleg.begin(),it));
     std::copy(koleg.begin(),it,geek.begin());
-    koleg.erase(it, koleg.end());
+    koleg.erase(koleg.begin(),it);
 }
