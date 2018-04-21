@@ -39,3 +39,8 @@ bin/
 .idea/
 uzd2/Performance Input Failai/perf1000000_IN.txt
 uzd2/Performance Input Failai/perf10000000_IN.txt
+AntraUzduotis/CMakeFiles/
+AntraUzduotis/perf10_IN.txt
+AntraUzduotis/cmake_install.cmake
+AntraUzduotis/Makefile
+AntraUzduotis/CMakeCache.txt
