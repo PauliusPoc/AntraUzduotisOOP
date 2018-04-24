@@ -21,6 +21,9 @@ double Studentas::vidurkis() const {
     suma = accumulate(nDarbai_.begin(), nDarbai_.end(), 0.0);
     return suma / nDarbai_.size();
 }
+double Studentas::galBalas(fun F) {
+    return 0.4 * F() + 0.6 * egzam_;
+}
 
 istream &operator>>(istream &input, Studentas &S) {
     input >> S.pavard_ >> S.vardas_;

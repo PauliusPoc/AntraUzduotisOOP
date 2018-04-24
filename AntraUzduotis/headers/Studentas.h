@@ -21,6 +21,8 @@ using std::ostream;
 using std::endl;
 using std::cout;
 
+typedef double (*fun)();
+
 class Studentas {
     private:
         string vardas_{};
@@ -38,6 +40,7 @@ class Studentas {
         friend ostream &operator<<( ostream&, Studentas&);
         double vidurkis() const;
         double mediana();
+        double galBalas(fun F);
 };
 
 bool compare(const Studentas&, const Studentas&);
