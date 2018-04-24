@@ -95,6 +95,6 @@ public:
  * Lygina du studentus pagal vardus ir pavardes abeceliškai
  * @return true, jei pirmo studento vardas ir pavarde yra pirmesni pagal abecele, false - jei ne
  */
-bool compare(const Studentas&, const Studentas&);
+bool comparePagalPav(Studentas& lhs, Studentas& rhs);
 
 #endif //ANTRAUZDUOTIS_STUDENTAS_H
