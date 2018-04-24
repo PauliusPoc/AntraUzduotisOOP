@@ -6,10 +6,10 @@
 #include "../headers/DarbasFailai.h"
 
 bool RibaV (Studentas& val) {
-    return val.vidurkis() >= 6.0;
+    return val.galBalas(val.vidurkis) >= 5.0;
 }
 bool RibaM (Studentas& val) {
-    return val.mediana() >= 6.0;
+    return val.galBalas(val.mediana) >= 5.0;
 }
 
 void StartTesting(const unsigned int nTestu) {
