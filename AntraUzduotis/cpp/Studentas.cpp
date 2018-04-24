@@ -13,17 +13,15 @@ bool comparePagalPav(Studentas& lhs, Studentas& rhs) {
 }
 double Studentas::mediana() {
     std::sort(nDarbai_.begin(), nDarbai_.end());
-    return nDarbai_.size() % 2 == 0 ? (nDarbai_[nDarbai_.size() / 2] + nDarbai_[nDarbai_.size() / 2 - 1]) / 2
-                                    : nDarbai_[nDarbai_.size() / 2];
+    return (nDarbai_.size() % 2 == 0 ? (nDarbai_[nDarbai_.size() / 2] + nDarbai_[nDarbai_.size() / 2 - 1]) / 2
+                                    : nDarbai_[nDarbai_.size() / 2]) * 0.4 + 0.6 * egzam_;
 }
-double Studentas::vidurkis() const {
+double Studentas::vidurkis(){
     double suma{};
     suma = accumulate(nDarbai_.begin(), nDarbai_.end(), 0.0);
-    return suma / nDarbai_.size();
+    return (suma / nDarbai_.size()) * 0.4 + 0.6 * egzam_;
 }
-double Studentas::galBalas(fun F) {
-    return 0.4 * F() + 0.6 * egzam_;
-}
+
 
 istream &operator>>(istream &input, Studentas &S) {
     input >> S.pavard_ >> S.vardas_;

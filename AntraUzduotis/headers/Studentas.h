@@ -21,7 +21,6 @@ using std::ostream;
 using std::endl;
 using std::cout;
 
-typedef double(*fun)();
 /// Studentus apibrėžianti klasė
 class Studentas {
 private:
@@ -72,29 +71,22 @@ public:
     friend ostream &operator<<( ostream&, Studentas&);
 
     /**
-    * Suskaičiuoja namų darbų įvertinimų vidurkį
-    * @return namų darbų įvertinimų vidurkis
+    * Suskaičiuoja galutinį balą pagal vidurkį
+    * @return galutinis balas
     */
-    double vidurkis() const;
+    double vidurkis();
 
     /**
-    * Suskaičiuoja namų darbų įvertinimų medianą
-    * @return namų darbų įvertinimų mediana
+    * Suskaičiuoja galutinį balą pagal medianą
+    * @return galutinis balas
     */
     double mediana();
-
-    /**
-     * Skaičiuojamas studento galutinis balas
-     * @param F Funkcija pagal kurią skaičiuojame balą (vidurkis arba mediana)
-     * @return Studento galutinis balas
-     */
-    double galBalas(fun F);
 
 };
 /**
  * Lygina du studentus pagal vardus ir pavardes abeceliškai
  * @return true, jei pirmo studento vardas ir pavarde yra pirmesni pagal abecele, false - jei ne
  */
-bool comparePagalPav(Studentas& lhs, Studentas& rhs);
+bool compare(const Studentas&, const Studentas&);
 
 #endif //ANTRAUZDUOTIS_STUDENTAS_H
