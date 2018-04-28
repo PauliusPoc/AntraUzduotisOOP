@@ -31,7 +31,7 @@ bool RibaM (Studentas& val);
  * Funckciją nustatanti parametrus ir vykdanti profiliavimą
  * @param nTestu vykdomų testų skaičius
  */
-void StartTesting(const unsigned int nTestu);
+void StartTesting(unsigned int nTestu);
 /**
  * Funkcija, generuojanti atsitiktinius duomenis profiliavimui
  * @param n  generuojamų įrašų skaičius
@@ -44,7 +44,7 @@ void GeneruokTestui(unsigned int n, std::ofstream &fk);
  * @param n 10 laipsnio rodiklis (kiek įrašų bus faile = 10 ^ n)
  * @param met  Profiliavimo metodo numeris (vidurkis ar mediana)
  */
-void StartProfiling(unsigned int n, const unsigned int met);
+void StartProfiling(unsigned int n, unsigned int met);
 
 /**
  * Rūšiavimo funkcija

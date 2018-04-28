@@ -7,7 +7,7 @@
 
 void Nuskaitymas(vector<Studentas> &kolegos, string s) {
 
-    Studentas *k = new Studentas();
+    Studentas *k;
     std::ifstream fd;
     kolegos.reserve(100000);
 
@@ -22,9 +22,11 @@ void Nuskaitymas(vector<Studentas> &kolegos, string s) {
         return;
     }
 
-    while (fd >> *k) {
+    while (!fd.eof()) {
+        k = new Studentas(fd);
+        if (fd.eof()) break;
         kolegos.push_back(*k);
-        k = new Studentas();
+
     }
 }
 
@@ -34,7 +36,7 @@ void Rasymas(vector<Studentas> &kolegos) {
     const int vienasTabas = 4;
 
     if(!kolegos.empty()) {
-        //std::sort(kolegos.begin(), kolegos.end());
+        std::sort(kolegos.begin(), kolegos.end());
         auto dv = kolegos[0].vardas().length(), dp = kolegos[0].pavarde().length();
         for (Studentas &kolego : kolegos) {
             if (kolego.vardas().length() > dv) dv = kolego.vardas().length();

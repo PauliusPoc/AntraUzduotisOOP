@@ -8,8 +8,14 @@ void Studentas::print(unsigned int dv, unsigned int dp, std::ostream &fr) {
        << std::setprecision(2) << std::fixed << std::setw(18 + 4)
        << vidurkis() << std::setw(17 + 3) << mediana() << std::endl;
 }
-bool comparePagalPav(Studentas& lhs, Studentas& rhs) {
-    return lhs.pavarde() <= rhs.vardas() && (!(lhs.pavarde() == rhs.pavarde()) || lhs.vardas() < rhs.vardas());
+Studentas::Studentas(istream &input) {
+    input >> pavard_ >> vardas_;
+    for (auto i = 0; i < 5; i++){
+        double t;
+        input >> t;
+        nDarbai_.push_back(t);
+    }
+    input >> egzam_;
 }
 double Studentas::mediana() {
     std::sort(nDarbai_.begin(), nDarbai_.end());
@@ -22,18 +28,19 @@ double Studentas::vidurkis(){
     return (suma / nDarbai_.size()) * 0.4 + 0.6 * egzam_;
 }
 
-
-istream &operator>>(istream &input, Studentas &S) {
-    input >> S.pavard_ >> S.vardas_;
-    double t;
-    for (int i = 0; i < 5; i++){
-        input >> t;
-        S.nDarbai_.push_back(t);
-    }
-    input >> S.egzam_;
-    return input;
-}
 ostream &operator<<(ostream &output, Studentas &S){
     output << S.vardas_ << " " << S.pavard_ << " " << S.vidurkis() << " " << S.mediana() << endl;
     return output;
+}
+bool Studentas::operator<(const Studentas &rhs) {
+    return pavard_ <= rhs.pavard_ || (pavard_ == rhs.pavard_ && vardas_ < rhs.vardas_);
+}
+bool Studentas::operator>(const Studentas &rhs) {
+    return !operator<(rhs);
+}
+bool Studentas::operator==(const Studentas &rhs) {
+    return vardas_ == rhs.vardas_ && pavard_ == rhs.pavard_;
+}
+bool Studentas::operator!=(const Studentas &rhs) {
+    return !operator==(rhs);
 }

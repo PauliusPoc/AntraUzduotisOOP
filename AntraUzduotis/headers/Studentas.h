@@ -34,27 +34,25 @@ private:
     double egzam_;
 public:
     /**
-     * Sukonsyruoja studento objektą
+     * Sukonstruoja studento objektą
      */
     Studentas() : egzam_(0){}
+    /**
+     * Sukonstruoja Studento objektą iš duomenų įvesties stream'o.
+     * @param input įvesties stream'as
+     */
+    explicit Studentas(istream& input);
 
     /**
      * Gražinamas studento vardas
      * @return Studento vardas
      */
     inline string vardas() const { return vardas_; }
-
     /**
      * Gražinama studento pavardė
      * @return Studento pavardė
      */
     inline string pavarde() const { return pavard_; }
-
-    /**
-    * Nuskaito studento informaciją iš įvesties stream'o
-    * @return input stream'as
-    */
-    friend istream &operator>>( istream&, Studentas& );
 
     /**
      *  Studento informacijos išvedimas lygiuojant duomenis
@@ -68,14 +66,33 @@ public:
      * Studento informacijos išvedimas
      * @return išvesties stream'as
     */
-    friend ostream &operator<<( ostream&, Studentas&);
+    friend ostream &operator<<(ostream&, Studentas&);
+    /**
+     * Pažiūrima ar studento vardas ir pavardė abeceliškai eina pirmiau nei kito
+     * @return Ar studento vardas ir pavardė abeceliškai eina pirmiau nei kito
+     */
+    bool operator< (const Studentas& rhs);
+    /**
+     * Pažiūrima ar studento vardas ir pavardė abeceliškai eina vėliau nei kito
+     * @return Ar studento vardas ir pavardė abeceliškai eina vėliau nei kito
+     */
+    bool operator> (const Studentas& rhs);
+    /**
+     * Pažiūrima ar studento vardas ir sutampa su kito Studento
+     * @return Ar studento vardas ir sutampa su kito Studento
+     */
+    bool operator== (const Studentas& rhs);
+    /**
+     * Pažiūrima ar studento vardas ir nesutampa su kito Studento
+     * @return Ar studento vardas ir nesutampa su kito Studento
+     */
+    bool operator!= (const Studentas& rhs);
 
     /**
     * Suskaičiuoja galutinį balą pagal vidurkį
     * @return galutinis balas
     */
     double vidurkis();
-
     /**
     * Suskaičiuoja galutinį balą pagal medianą
     * @return galutinis balas
@@ -83,10 +100,5 @@ public:
     double mediana();
 
 };
-/**
- * Lygina du studentus pagal vardus ir pavardes abeceliškai
- * @return true, jei pirmo studento vardas ir pavarde yra pirmesni pagal abecele, false - jei ne
- */
-bool compare(const Studentas&, const Studentas&);
 
 #endif //ANTRAUZDUOTIS_STUDENTAS_H
