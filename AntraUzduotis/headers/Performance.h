@@ -9,10 +9,9 @@
 #include <fstream>
 #include <list>
 #include <deque>
+#include <random>
 
-using laikas = std::chrono::high_resolution_clock;
-using ns = std::chrono::microseconds;
-using std::chrono::time_point;
+
 
 using std::uniform_int_distribution;
 using std::mt19937;
@@ -53,7 +52,6 @@ void StartProfiling(unsigned int n, unsigned int met);
  * @param geek  gerų Studentų konteinerio
  * @param arVidurkiu Profiliavimo metodas(vidurkis(true) ar mediana(false))
  */
-template<typename T>
-void ArKietas(T &koleg, T &geek, bool arVidurkiu);
+vector<Studentas> ArKietas(vector<Studentas> &koleg, bool arVidurkiu);
 
 #endif //ANTRAUZDUOTIS_PERFORMANCE_H
