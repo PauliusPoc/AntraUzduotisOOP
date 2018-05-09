@@ -5,6 +5,9 @@
 Patobulinkite 2-ojo darbo realizaciją:
 - Vietoj Studentas (StudentoInfo) structūros atsižvelgdami į Jūsų pačių atliktą antrą užduotį susikurkite Studentas (StudentoInfo) class'ę.
 
+## Dokumentacija
+Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į aplanką Doxygen ir atsidarykite index.html .
+
 ## Spartos analizė
 ### Rezultatai
 Neoptimatizuota
@@ -22,6 +25,16 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 
 ## Versijų istorija (changelog)
+
+### [Changelog v0.2 (2018-04-29)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.2)
+#### Pridėta
+- Sukurta Doxygen dokumentacija
+- Aprašyti operatoriai <, >, ==, !=.
+#### Pakeista
+- Vietoj operatoriaus >> naudojamas konstruktoriu su input stream'o parametru.
+- Studentus pradėta rūšiuoti pagal galutinį balą.
+#### Pašalinta
+- Studentų lyginimo funkcijos ištrintos. Jas pakeitė operatoriai.
 
 ### [Changelog v0.1.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1.1)
 #### Pridėta

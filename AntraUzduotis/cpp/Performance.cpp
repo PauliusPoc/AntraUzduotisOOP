@@ -4,6 +4,7 @@
 
 #include "../headers/Performance.h"
 #include "../headers/DarbasFailai.h"
+#include "../headers/Timer.h"
 
 bool RibaV (Studentas& val) {
     return val.vidurkis() >= 5.0;
@@ -46,7 +47,7 @@ void GeneruokTestui(unsigned int n, std::ofstream &fk) {
 
 void StartProfiling(unsigned int n, const unsigned int met) {
 
-    vector<Studentas> kolegos, geek;
+    vector<Studentas> kolegos;
 
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
@@ -58,28 +59,20 @@ void StartProfiling(unsigned int n, const unsigned int met) {
     cout << "------------------------------------------------------------------------------------" << endl;
     cout << "Dirbame su 10 ^ " + std::to_string(n) + " irasu" << endl;
 
-    auto start = laikas::now();
+    Timer t;
     Nuskaitymas(kolegos, fi);
-    auto end = laikas::now();
-    std::chrono::duration<double> diff = end - start;
-    auto grandTotal = diff;
-    cout <<"Nuskaitymas uztruko  "<< (diff).count()<<" s."<<endl;
-    start = laikas::now();
-    ArKietas(kolegos,geek, met == 1);
-    end = laikas::now();
-    diff = end - start;
-    cout <<"Rusiavimas uztruko (istrinant)  "<< (diff).count()<<" s."<<endl;
-    grandTotal += diff;
-    cout <<"Is viso:  "<< (grandTotal).count()<<" s."<<endl;
+    cout <<"Nuskaitymas uztruko  "<< t.getTime() <<" s."<<endl;
+    t.reset();
+    vector<Studentas> geek = ArKietas(kolegos, met == 1);
+    cout <<"Rusiavimas uztruko (istrinant)  "<< t.getTime()<<" s."<<endl;
 
 }
 
-template<typename T>
-void ArKietas(T &koleg, T &geek, bool arVidurkiu) {
+vector<Studentas> ArKietas(vector<Studentas> &koleg, bool arVidurkiu) {
     auto fx = RibaV;
     if (!arVidurkiu) fx = RibaM;
     auto it = std::stable_partition(koleg.begin(),koleg.end(),fx);
-    geek.resize(std::distance(koleg.begin(),it));
-    std::copy(koleg.begin(),it,geek.begin());
+    vector<Studentas> geek(koleg.begin(), it);
     koleg.erase(koleg.begin(),it);
+    return geek;
 }

@@ -44,3 +44,11 @@ bool Studentas::operator==(const Studentas &rhs) {
 bool Studentas::operator!=(const Studentas &rhs) {
     return !operator==(rhs);
 }
+
+bool Studentas::operator<=(const Studentas &rhs) {
+    return (operator<(rhs) || operator==(rhs));
+}
+
+bool Studentas::operator>=(const Studentas &rhs) {
+    return (operator>(rhs) || operator==(rhs));
+}
