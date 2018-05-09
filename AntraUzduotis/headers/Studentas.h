@@ -70,11 +70,13 @@ public:
      * @return Ar studento vardas ir pavardė abeceliškai eina pirmiau nei kito
      */
     bool operator< (const Studentas& rhs);
+    bool operator<=(const Studentas& rhs);
     /**
      * Pažiūrima ar studento vardas ir pavardė abeceliškai eina vėliau nei kito
      * @return Ar studento vardas ir pavardė abeceliškai eina vėliau nei kito
      */
     bool operator> (const Studentas& rhs);
+    bool operator>=(const Studentas& rhs);
     /**
      * Pažiūrima ar studento vardas ir sutampa su kito Studento
      * @return Ar studento vardas ir sutampa su kito Studento
