@@ -26,6 +26,12 @@ Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline 
 
 ## Versijų istorija (changelog)
 
+### Changelog v0.2.1 (2018-05-09)
+#### Pridėta 
+- Operatoriai <=. >=
+- Laiko matavimo klasė Timer
+- Release konfiguracija
+
 ### [Changelog v0.2 (2018-04-29)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.2)
 #### Pridėta
 - Sukurta Doxygen dokumentacija
