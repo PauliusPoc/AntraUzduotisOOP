@@ -10,23 +10,88 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 
 ## Spartos analizė
 ### Rezultatai
-Neoptimatizuota
-### ![O0](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O0.png)
-Optimatizuota naudojant O1
-### ![O1](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O1.png)
-Optimatizuota naudojant O2
-### ![O2](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O2.png)
-Optimatizuota naudojant O2
-### ![O3](https://github.com/AugustinasMKVU/AntraUzduotisOOP/blob/master/Performance%20Results/O3.png)
-### Išvada
-Matome, kad tinkamai realizavus klasę, sparta ne tik išliko tokia pat, bet pasitelkus papildomus algoritmus sparta net padidėjo.
-Pastebėta, kad tinkamai realizavus klasę, naudojant optimatizavimo flag'us didelio skirtumo nesusidaro (skirtumas sekundės dalyse).
-Vadinasi, jei programuotojas tinkamai implementuoja klasę, t.y. naudoja inline funkcijas, nekuria memory leak'ų implementacijos sparta prilygsta ```O3``` optimatizacijos lygiui.
+1. Debug konfiguracija
 
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0015072 s. | 0 s. |
+| n = 10 ^ 2 | 0.0035006 s. | 0 s. |
+| n = 10 ^ 3 | 0.0240169 s. | 0.000533 s. |
+| n = 10 ^ 4 | 0.213566 s. | 0.0065173 s. |
+| n = 10 ^ 5 | 2.12124 s. | 0.0651472 s. |
+
+
+2. Release konfiguracija nenurodant optimatizavimo flag'o
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0010026 s. | 0 s. |
+| n = 10 ^ 2 | 0.0040197 s. | 0 s. |
+| n = 10 ^ 3 | 0.021056 s. | 0 s. |
+| n = 10 ^ 4 | 0.204623 s. | 0.001504 s. |
+| n = 10 ^ 5 | 2.0743 s. | 0.0195484 s. |
+
+
+3. Release su O0 optimatizavimu
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0010027 s. | 0 s. |
+| n = 10 ^ 2 | 0.0030079 s. | 0 s. |
+| n = 10 ^ 3 | 0.0220895 s. | 0.001005 s. |
+| n = 10 ^ 4 | 0.211545 s. | 0.0060014 s. |
+| n = 10 ^ 5 | 2.09075 s. | 0.0657409 s. |
+
+
+4. Release su O1 optimatizavimu
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0010026 s. | 0 s. |
+| n = 10 ^ 2 | 0.003008 s. | 0 s. |
+| n = 10 ^ 3 | 0.0205547 s. | 0 s. |
+| n = 10 ^ 4 | 0.20304 s. | 0.0020057 s. |
+| n = 10 ^ 5 | 2.0044 s. | 0.0195836 s. |
+
+
+5. Release su O2 optimatizavimu
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0010236 s. | 0 s. |
+| n = 10 ^ 2 | 0.0035081 s. | 0 s. |
+| n = 10 ^ 3 | 0.0210477 s. | 0 s. |
+| n = 10 ^ 4 | 0.20755 s. | 0.0015044 s. |
+| n = 10 ^ 5 | 2.0226 s. | 0.019017 s. |
+
+
+6. Release su O3 optimatizavimu
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0015044 s. | 0 s. |
+| n = 10 ^ 2 | 0.0030084 s. | 0 s. |
+| n = 10 ^ 3 | 0.022076 s. | 0 s. |
+| n = 10 ^ 4 | 0.209557 s. | 0.0020057 s. |
+| n = 10 ^ 5 | 1.98886 s. | 0.0190317 s. |
+
+
+7. Release su Ofast optimatizavimu
+
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0010034 s. | 0 s. |
+| n = 10 ^ 2 | 0.0035101 s. | 0 s. |
+| n = 10 ^ 3 | 0.0210871 s. | 0.0005026 s. |
+| n = 10 ^ 4 | 0.204037 s. | 0.0015036 s. |
+| n = 10 ^ 5 | 2.04023 s. | 0.0185489 s. |
+
+### Išvada
+Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko tokia pati. Tai reiškia, kad naudodamas klases programuotojas negauna daug spartos ( taip pat ir nepraranda), tačiau kodo rašymas tampa malonesnis.
 
 ## Versijų istorija (changelog)
 
-### Changelog v0.2.1 (2018-05-09)
+### Changelog v0.2.i (2018-05-09)
 #### Pridėta 
 - Operatoriai <=. >=
 - Laiko matavimo klasė Timer
