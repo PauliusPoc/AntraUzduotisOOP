@@ -20,6 +20,14 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 | n = 10 ^ 4 | 0.213566 s. | 0.0065173 s. |
 | n = 10 ^ 5 | 2.12124 s. | 0.0651472 s. |
 
+|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
+|----------------------------------|-------------------|--------------|
+| n = 10 ^ 1 | 0.0025086 s. | 0.0010034 s. |
+| n = 10 ^ 2 | 0.0085191 s. | 0.0014961 s. |
+| n = 10 ^ 3 | 0.101254 s. | 0.0160738 s. |
+| n = 10 ^ 4 | 1.0528 s. | 0.160998 s. |
+| n = 10 ^ 5 | 10.5791 s. | 1.30318 s. |
+
 
 2. Release konfiguracija nenurodant optimatizavimo flag'o
 
@@ -31,60 +39,13 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 | n = 10 ^ 4 | 0.204623 s. | 0.001504 s. |
 | n = 10 ^ 5 | 2.0743 s. | 0.0195484 s. |
 
-
-3. Release su O0 optimatizavimu
-
 |Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
 |----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0010027 s. | 0 s. |
-| n = 10 ^ 2 | 0.0030079 s. | 0 s. |
-| n = 10 ^ 3 | 0.0220895 s. | 0.001005 s. |
-| n = 10 ^ 4 | 0.211545 s. | 0.0060014 s. |
-| n = 10 ^ 5 | 2.09075 s. | 0.0657409 s. |
-
-
-4. Release su O1 optimatizavimu
-
-|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
-|----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0010026 s. | 0 s. |
-| n = 10 ^ 2 | 0.003008 s. | 0 s. |
-| n = 10 ^ 3 | 0.0205547 s. | 0 s. |
-| n = 10 ^ 4 | 0.20304 s. | 0.0020057 s. |
-| n = 10 ^ 5 | 2.0044 s. | 0.0195836 s. |
-
-
-5. Release su O2 optimatizavimu
-
-|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
-|----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0010236 s. | 0 s. |
-| n = 10 ^ 2 | 0.0035081 s. | 0 s. |
-| n = 10 ^ 3 | 0.0210477 s. | 0 s. |
-| n = 10 ^ 4 | 0.20755 s. | 0.0015044 s. |
-| n = 10 ^ 5 | 2.0226 s. | 0.019017 s. |
-
-
-6. Release su O3 optimatizavimu
-
-|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
-|----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0015044 s. | 0 s. |
-| n = 10 ^ 2 | 0.0030084 s. | 0 s. |
-| n = 10 ^ 3 | 0.022076 s. | 0 s. |
-| n = 10 ^ 4 | 0.209557 s. | 0.0020057 s. |
-| n = 10 ^ 5 | 1.98886 s. | 0.0190317 s. |
-
-
-7. Release su Ofast optimatizavimu
-
-|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
-|----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0010034 s. | 0 s. |
-| n = 10 ^ 2 | 0.0035101 s. | 0 s. |
-| n = 10 ^ 3 | 0.0210871 s. | 0.0005026 s. |
-| n = 10 ^ 4 | 0.204037 s. | 0.0015036 s. |
-| n = 10 ^ 5 | 2.04023 s. | 0.0185489 s. |
+| n = 10 ^ 1 | 0.0025071 s. | 0.0015715 s. |
+| n = 10 ^ 2 | 0.0095253 s. | 0.0015068 s. |
+| n = 10 ^ 3 | 0.0987629 s. | 0.013553 s. |
+| n = 10 ^ 4 | 1.02123 s. | 0.115808 s. |
+| n = 10 ^ 5 | 10.2926 s. | 1.34207 s. |
 
 ### Išvada
 Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko tokia pati. Tai reiškia, kad naudodamas klases programuotojas negauna daug spartos ( taip pat ir nepraranda), tačiau kodo rašymas tampa malonesnis.
