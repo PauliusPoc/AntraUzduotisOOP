@@ -5,11 +5,10 @@
 #include <utility>
 #include "../headers/DarbasFailai.h"
 
-void Nuskaitymas(vector<Studentas> &kolegos, string s) {
+void Nuskaitymas(StrongVector<Studentas> &kolegos, string s) {
 
     Studentas *k;
     std::ifstream fd;
-    kolegos.reserve(100000);
 
     try {
         fd.open( s, std::ios::in);
@@ -25,12 +24,16 @@ void Nuskaitymas(vector<Studentas> &kolegos, string s) {
     while (!fd.eof()) {
         k = new Studentas(fd);
         if (fd.eof()) break;
-        kolegos.push_back(*k);
-
+        try {
+            kolegos.push_back(*k);
+        }catch (std::exception exc){
+            cout << exc.what() << endl;
+            std::terminate();
+        }
     }
 }
 
-void Rasymas(vector<Studentas> &kolegos) {
+void Rasymas(StrongVector<Studentas> &kolegos) {
 
     const int kiekVietos = 18;
     const int vienasTabas = 4;

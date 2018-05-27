@@ -10,7 +10,7 @@
 #include <list>
 #include <deque>
 #include <random>
-
+#include "../StrongVector.h"
 
 
 using std::uniform_int_distribution;
@@ -52,6 +52,6 @@ void StartProfiling(unsigned int n, unsigned int met);
  * @param geek  gerų Studentų konteinerio
  * @param arVidurkiu Profiliavimo metodas(vidurkis(true) ar mediana(false))
  */
-vector<Studentas> ArKietas(vector<Studentas> &koleg, bool arVidurkiu);
+void ArKietas(StrongVector<Studentas> &koleg, StrongVector<Studentas> &geek, bool arVidurkiu);
 
 #endif //ANTRAUZDUOTIS_PERFORMANCE_H

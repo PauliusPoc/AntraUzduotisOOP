@@ -25,7 +25,7 @@ int main() {
 }
 
 void DarbasSuFailais() {
-    vector<Studentas> kolegos{};
+    StrongVector<Studentas> kolegos{};
     Nuskaitymas(kolegos,"kursiokai.txt");
     Rasymas(kolegos);
 }

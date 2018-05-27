@@ -9,17 +9,18 @@
 #include <fstream>
 #include <list>
 #include <deque>
+#include "../StrongVector.h"
 
 /**
  * Funkcija nuskaitanti Studentų duomenis iš failo
  * @param kolegos Studentų konteineris
  * @param s duomenų failo pavadinimas
  */
-void Nuskaitymas(vector<Studentas> &kolegos, string s);
+void Nuskaitymas(StrongVector<Studentas> &kolegos, string s);
 /**
  * Funkcija išrašanti studentus
  * @param kolegos Studentų konteineris
  */
-void Rasymas(vector<Studentas> &kolegos);
+void Rasymas(StrongVector<Studentas> &kolegos);
 
 #endif //ANTRAUZDUOTIS_DARBASFAILAI_H

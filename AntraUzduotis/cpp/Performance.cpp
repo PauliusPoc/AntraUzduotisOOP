@@ -5,6 +5,7 @@
 #include "../headers/Performance.h"
 #include "../headers/DarbasFailai.h"
 #include "../headers/Timer.h"
+#include "../StrongVector.h"
 
 bool RibaV (Studentas& val) {
     return val.vidurkis() >= 5.0;
@@ -27,13 +28,15 @@ void StartTesting(const unsigned int nTestu) {
         goto  c2;
     }
 
-    for (unsigned int i = 1; i <= nTestu; i++){
+    cout << "|Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |" << endl;
+    cout << "|----------------------------------|-------------------|--------------|" << endl;
+    for (unsigned int i = 1; i <= 5; i++){
         StartProfiling(i, static_cast<unsigned int>(metod));
     }
 }
 
 void GeneruokTestui(unsigned int n, std::ofstream &fk) {
-    std::mt19937 mt(static_cast<long unsigned int>(std::chrono::_V2::system_clock::now().time_since_epoch().count()));
+    std::mt19937 mt(static_cast<long unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()));
     uniform_int_distribution<int> dist(1, 10);
 
     for (unsigned int i = 1; i <= n; i++){
@@ -46,33 +49,34 @@ void GeneruokTestui(unsigned int n, std::ofstream &fk) {
 }
 
 void StartProfiling(unsigned int n, const unsigned int met) {
-
-    vector<Studentas> kolegos;
+    StrongVector<Studentas> kolegos;
 
     auto dydis = (unsigned int)std::pow(10,n);
     kolegos.reserve(dydis);
-    string fi = "perf" + std::__cxx11::to_string(dydis) + "_IN.txt";
 
-    std::ofstream fr (fi);
-    GeneruokTestui(dydis,fr);
+    string fi = "perf" + std::to_string(dydis) + "_IN.txt";
+    string fo = "perf" + std::to_string(dydis) + "_OUT.txt";
 
-    cout << "------------------------------------------------------------------------------------" << endl;
-    cout << "Dirbame su 10 ^ " + std::to_string(n) + " irasu" << endl;
+    std::ofstream frr (fi);
+    GeneruokTestui(dydis,frr);
+    std::ofstream fr (fo);
+
+    cout << "| n = 10 ^ " + std::to_string(n) + " | ";
 
     Timer t;
     Nuskaitymas(kolegos, fi);
-    cout <<"Nuskaitymas uztruko  "<< t.getTime() <<" s."<<endl;
+    cout << t.getTime() <<" s. | ";
     t.reset();
-    vector<Studentas> geek = ArKietas(kolegos, met == 1);
-    cout <<"Rusiavimas uztruko (istrinant)  "<< t.getTime()<<" s."<<endl;
-
+    StrongVector<Studentas> geek;
+    ArKietas(kolegos,geek,met == 1);
+    cout << t.getTime()<<" s. |"<<endl;
 }
 
-vector<Studentas> ArKietas(vector<Studentas> &koleg, bool arVidurkiu) {
+void ArKietas(StrongVector<Studentas> &koleg, StrongVector<Studentas> &geek, bool arVidurkiu) {
     auto fx = RibaV;
     if (!arVidurkiu) fx = RibaM;
     auto it = std::stable_partition(koleg.begin(),koleg.end(),fx);
-    vector<Studentas> geek(koleg.begin(), it);
+    auto posID = std::distance(koleg.begin(), it);
+    geek.assign(koleg.begin(), it);
     koleg.erase(koleg.begin(),it);
-    return geek;
 }
