@@ -8,6 +8,27 @@ Patobulinkite 2-ojo darbo realizaciją:
 ## Dokumentacija
 Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į aplanką Doxygen ir atsidarykite index.html .
 
+## Programos instaliacija
+```git clone https://github.com/AugustinasMKVU/AntraUzduotisOOP.git```
+
+```cd AntraUzduotisOOP/AntraUzduotis/```
+
+```mkdir build && cd build```
+
+1. Normali programos realizacija:
+
+    ```cmake .. -G "MinGW Makefiles"```
+    
+2. Google Test
+
+    ```cp ../test.txt test.txt```
+    
+    ```cmake .. -DSTART_GTEST=ON -G "MinGW Makefiles"```
+
+```mingw32-make```
+
+```./AntraUzduotis.exe```
+
 ## Spartos analizė
 ### Rezultatai
 1. Debug konfiguracija
