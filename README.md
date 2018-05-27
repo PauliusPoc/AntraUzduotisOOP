@@ -76,7 +76,7 @@ Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko
 
 ## Versijų istorija (changelog)
 
-### [Changerlog v1.0 (2018-05-27)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v1.0)
+### [Changelog v1.0 (2018-05-27)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v1.0)
 #### Pridėta
 - Implementuotas custom vektorius, veikiantis su su Studento tipo objektais
 - Parašyti unit testai naudojantis [google_test](https://github.com/google/googletest) biblioteka.
