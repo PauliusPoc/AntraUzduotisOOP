@@ -82,7 +82,7 @@ Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko
 - Parašyti unit testai naudojantis [google_test](https://github.com/google/googletest) biblioteka.
 - Sukurta papildoma konfigūracija testavimui
 - Sukurta instaliacijos instrukcija.
-####
+#### Pakeista
 - Atnaujinta spartos analizė.
 #### Pašalinta
 - Išrtinti nereikalingi failai
