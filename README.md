@@ -31,6 +31,8 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 
 ## Spartos analizė
 ### Rezultatai
+#### Pirma lentelė - std::vector, antra - Strong Vector.
+
 1. Debug konfiguracija
 
 |Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
@@ -43,11 +45,12 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 
 |Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
 |----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0025086 s. | 0.0010034 s. |
-| n = 10 ^ 2 | 0.0085191 s. | 0.0014961 s. |
-| n = 10 ^ 3 | 0.101254 s. | 0.0160738 s. |
-| n = 10 ^ 4 | 1.0528 s. | 0.160998 s. |
-| n = 10 ^ 5 | 10.5791 s. | 1.30318 s. |
+| n = 10 ^ 1 | 0.0010213 s. | 0 s. |
+| n = 10 ^ 2 | 0.0030211 s. | 0 s. |
+| n = 10 ^ 3 | 0.0230593 s. | 0.0010047 s. |
+| n = 10 ^ 4 | 0.213566 s. | 0.012032 s. |
+| n = 10 ^ 5 | 2.10259 s. | 0.115338 s. |
+
 
 
 2. Release konfiguracija nenurodant optimatizavimo flag'o
@@ -62,24 +65,36 @@ Norėdami peržiūrėti dokumentaciją, nusiklonuokite repozitoriją, eikite į 
 
 |Duomenu kiekis                    |Duomenu nuskaitymas|Rusiavimas    |
 |----------------------------------|-------------------|--------------|
-| n = 10 ^ 1 | 0.0025071 s. | 0.0015715 s. |
-| n = 10 ^ 2 | 0.0095253 s. | 0.0015068 s. |
-| n = 10 ^ 3 | 0.0987629 s. | 0.013553 s. |
-| n = 10 ^ 4 | 1.02123 s. | 0.115808 s. |
-| n = 10 ^ 5 | 10.2926 s. | 1.34207 s. |
+| n = 10 ^ 1 | 0.0010022 s. | 0 s. |
+| n = 10 ^ 2 | 0.0030096 s. | 0 s. |
+| n = 10 ^ 3 | 0.0200537 s. | 0 s. |
+| n = 10 ^ 4 | 0.197527 s. | 0.003008 s. |
+| n = 10 ^ 5 | 1.99733 s. | 0.0340906 s. |
 
 ### Išvada
 Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko tokia pati. Tai reiškia, kad naudodamas klases programuotojas negauna daug spartos ( taip pat ir nepraranda), tačiau kodo rašymas tampa malonesnis.
 
 ## Versijų istorija (changelog)
 
-### Changelog v0.2.i (2018-05-09)
+### [Changerlog v1.0](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v1.0)
+#### Pridėta
+- Implementuotas custom vektorius, veikiantis su su Studento tipo objektais
+- Parašyti unit testai naudojantis [google_test](https://github.com/google/googletest) biblioteka.
+- Sukurta papildoma konfigūracija testavimui
+- Sukurta instaliacijos instrukcija.
+####
+- Atnaujinta spartos analizė.
+#### Pašalinta
+- Išrtinti nereikalingi failai
+
+
+### [Changelog v0.2.1 (2018-05-09)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v0.2.1)
 #### Pridėta 
 - Operatoriai <=. >=
 - Laiko matavimo klasė Timer
 - Release konfiguracija
 
-### [Changelog v0.2 (2018-04-29)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.2)
+### [Changelog v0.2 (2018-04-29)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v0.2)
 #### Pridėta
 - Sukurta Doxygen dokumentacija
 - Aprašyti operatoriai <, >, ==, !=.
@@ -89,13 +104,13 @@ Tinkamai implementavus klasę, sparta šiek tiek padidėjo, bet visumoje išliko
 #### Pašalinta
 - Studentų lyginimo funkcijos ištrintos. Jas pakeitė operatoriai.
 
-### [Changelog v0.1.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1.1)
+### [Changelog v0.1.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v0.1.1)
 #### Pridėta
 - Implementuotas << operatorius Studentas klasėje
 #### Pakeista
 Pataisyta loginė klaida rūšiavimo funkcijoje.
 
-### [Changelog v0.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/releases/tag/v0.1)
+### [Changelog v0.1 (2018-04-20)](https://github.com/AugustinasMKVU/AntraUzduotisOOP/tree/v0.1)
 #### Pridėta
 - Vietoj Kolega structūros sukurta Studentas class'ė
 - Palyginta abiejų Jūsų programų, naudojančios struct iš ankstesniojo darbos ir naudojančios class tipo Studentus iš dabartinės realizacijos, spartą.
